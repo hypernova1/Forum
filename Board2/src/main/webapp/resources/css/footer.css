@@ -1,0 +1,22 @@
+*{
+    margin: 0px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 1.2em;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+    background: black;
+}
+footer>p{
+    color: white;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select:none;
+}

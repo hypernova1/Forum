@@ -1,0 +1,84 @@
+* {
+	margin: 0px;
+}
+body{
+	background-image: url("http://www.sdjgjx.com/up/pc/background%20hd.jpg");
+}
+
+section {
+   margin: 0px 250px 0px 250px;
+}
+
+.list-name {
+    border-bottom: solid 1.5px;
+	padding: 5px;
+}
+
+#post-list {
+	width: 100%;
+	border-bottom: 1px solid gray;
+	padding-bottom: 5px;
+}
+
+.container {
+    margin: 10px 0px 10px 0px;
+    float: left;
+	background: white;
+    padding: 15px;
+    width: 80%;
+    border-radius: 3px;
+}
+
+.title {
+	width: 50%;
+}
+
+.content, .writer, .date {
+    width: 10%;
+}
+
+.num, .view, .vote {
+	width: 5%;
+}
+
+th, td {
+	padding: 8px;
+	border-bottom: 1px solid #dee2e6;
+}
+
+th {
+	border-color: #868e96;
+}
+
+.center {
+	text-align: center;
+}
+table{
+    border-spacing: 0px;
+    display:table;
+}
+aside{
+    float: right;
+    margin-top: 10px;
+    width: 16%;
+}
+.aside{
+    border-radius: 3px;
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+h4{
+    border-bottom: 1px solid;
+    padding: 5px;
+}
+.aside>.title{
+    width: 90%;
+    padding: 3px 5px 0px 5px;
+    overflow: hidden;  
+    text-overflow: ellipsis;  
+    white-space: nowrap;
+    font-size: 0.8em;  
+    margin-bottom: 0px;
+    
+}
