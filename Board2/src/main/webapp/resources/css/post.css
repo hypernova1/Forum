@@ -11,15 +11,14 @@ body{
 section {
 	margin: 10px 500px 30px 500px;
 	padding: 10px;
-	background: white;
 	border-radius: 3px;
 	border: 1px solid #ced4da;
+	background: #f8f9fa;
 }
 
 #title {
 	padding: 5px;
 	border-bottom: 1px solid #dee2e6;
-	border-top: 1px solid #dee2e6;
 }
 
 #title-header {
@@ -178,6 +177,7 @@ textarea {
 }
 
 .btn.list{
+	text-align: center;
 	width: 70px;
 	color: #343a40;
 }

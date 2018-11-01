@@ -27,9 +27,7 @@
 
     <form action="./write" method="post">
 		<section class="wrapper">
-            <input type="hidden" name="type" value="">
-            <input type="text" class="text writer" placeholder="글쓴이" name="writer">
-            <input type="password" class="text pw" placeholder="비밀번호" name="pw">
+            <input type="hidden" name="type" value="1">
             <div><input type="text" class="text" placeholder="제목" name="title"></div>
             <div><textarea name="content" id="summernote"></textarea></div>
             <div id="btn-wrapper">
@@ -38,7 +36,7 @@
             </div>
     	</section>
     </form>
-
+	<input type="hidden" value=${page.cri.page}">
 
 <%@ include file="../include/footer.jsp" %>
 </body>

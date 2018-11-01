@@ -16,7 +16,6 @@ public class LoginController {
 		return "home";
 	}
 	
-	
 	@PostMapping("login")
 	public @ResponseBody ResponseEntity<?> login(@RequestBody String json){
 		System.out.println(json);

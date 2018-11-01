@@ -1,15 +1,33 @@
-package pagination;
+package com.chan.pagination;
 
 public class Criteria {
 
-	private int page;
-	private int perPageNum;
+	private Integer page;
+	private Integer perPageNum;
+	private String keyword;
+	private Integer type;
 	
 	{
 		this.page = 1;
 		this.perPageNum = 20;
 	}
 	
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
 	public int getPage() {
 		return page;
 	}
@@ -22,7 +40,7 @@ public class Criteria {
 		this.page = page;
 	}
 	
-	public int getPerPageNum() {
+	public Integer getPerPageNum() {
 		return perPageNum;
 	}
 	
@@ -34,7 +52,7 @@ public class Criteria {
 		this.perPageNum = perPageNum;
 	}
 	
-	public int getPageStart() {
+	public Integer getPageStart() {
 		return (this.page - 1) * perPageNum;
 	}
 	

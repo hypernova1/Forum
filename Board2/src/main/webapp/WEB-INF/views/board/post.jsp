@@ -9,29 +9,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="/css/post.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-    <style>
-
-    </style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
     <section>
         <div id="title">
             <div id="title-header">
-                <h2 class="left">나는나다 하하하하하</h2>
-                <div id="date" class="right">2018-10-31 12:00</div>
+                <h2 class="left">${board.title}</h2>
+                <div id="date" class="right">${board.regdate}</div>
             </div>
             <div id="title-footer">
-                <div id="writer" class="left">작성자 누구</div>
-                <div class="right">반대 <span>1</span></div>
-                <div class="right">추천 <span>1</span></div>
+                <div id="writer" class="left">작성자</div>
+                <div class="right">추천 <span>${board.recommend}</span></div>
                 <div class="right">댓글 <span>1</span></div>
                 <div class="right">조회 <span>1</span></div>
             </div>
         </div>
         <div id="content">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum, natus asperiores. Voluptas officia dolores dicta itaque minus reiciendis ipsa commodi cum? Officiis suscipit ad itaque, doloremque corporis odit eveniet maiores!
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. In sit corporis molestiae dignissimos porro maiores recusandae dicta. Asperiores architecto omnis vitae aliquam itaque amet saepe ipsum aspernatur, facilis, ad debitis?
+        	${board.content}
         </div>
         <div id="recommend" class="center">
             <div class="inline btn">추천</div>
@@ -75,4 +70,5 @@
     </section>
 <%@ include file="../include/footer.jsp" %>
 </body>
+<script src="/js/post.js"></script>
 </html>

@@ -1,4 +1,4 @@
-package pagination;
+package com.chan.pagination;
 
 public class Pagination {
 
@@ -22,7 +22,7 @@ public class Pagination {
 	
 	private void calcData() {
 		
-		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum));
+		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
 		
 		startPage = (endPage - displayPageNum) + 1;
 		

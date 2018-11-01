@@ -1,17 +1,19 @@
 package com.chan.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.chan.domain.BoardVO;
-
-import pagination.Criteria;
+import com.chan.pagination.Criteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 	
+	@Autowired
 	private SqlSession session;
 
 	@Override
@@ -25,18 +27,23 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public BoardVO read(Integer bno) {
+	public HashMap<String, Object> read(Integer bno) {
 		return session.selectOne("board.read", bno);
 	}
 
 	@Override
-	public List<BoardVO> readAll(Criteria cri) {
+	public List<HashMap<String, Object>> readAll(Criteria cri) {
 		return session.selectList("board.readAll", cri);
 	}
 
 	@Override
 	public void delete(Integer bno) {
 		session.delete("board.delete", bno);
+	}
+
+	@Override
+	public int countAll() {
+		return session.selectOne("board.countAll");
 	}
 
 }

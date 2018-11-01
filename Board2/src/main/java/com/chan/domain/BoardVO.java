@@ -13,6 +13,21 @@ public class BoardVO {
 	private Integer writer;
 	private Integer view;
 	private Integer recommend;
+	private Integer type;
+	private Integer comment;
+	
+	public Integer getComment() {
+		return comment;
+	}
+	public void setComment(Integer comment) {
+		this.comment = comment;
+	}
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
 	private Date regdate;
 	
 	public Integer getBno() {

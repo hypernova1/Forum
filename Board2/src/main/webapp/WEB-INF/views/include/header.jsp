@@ -31,8 +31,8 @@
         <div class="menu none-drag notice">Notice</div>
     </nav>
 
-        <div class="modal login">
-            <div class="modal-content">
+        <div class="header modal login">
+            <div class="header modal-content">
                 <div id="loginForm">
                     <h2 id="login-title">Login</h2>
                     <div class="error">&nbsp;</div>
@@ -48,8 +48,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal signin">
-            <div class="modal-content">
+        <div class="header modal signin">
+            <div class="header modal-content">
                 <div id="signinForm">
                     <h2 id="signin-title">Sign In</h2>
                     <div class="error">&nbsp;</div>
