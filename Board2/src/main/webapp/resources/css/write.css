@@ -1,0 +1,48 @@
+*{ margin: 0px; }
+body{
+	background-image: url("http://www.sdjgjx.com/up/pc/background%20hd.jpg");
+}
+.wrapper{
+	background: white;
+    margin: 20px 500px;
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 12px;
+}
+form .text{
+    width: 100%;
+    height: 30px;
+    margin: 15px 0px;
+    padding: 5px;
+    border-radius: 3px;
+}
+form .writer, form .pw{
+    display: inline-block;
+    width: 20%;
+    margin: 0px 10px 0px 0px;
+}
+.pw{
+    width: 10%;
+}
+
+button[type=submit], button.submit, #cancel {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px 14px;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    font-weight: bold;
+    width: 90px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    cursor: pointer;
+    background:#e9ecef;
+    color: white;
+}
+#cancel{
+	background: #228be6;
+}
+
+
+#btn-wrapper{
+    text-align: center;
+}
