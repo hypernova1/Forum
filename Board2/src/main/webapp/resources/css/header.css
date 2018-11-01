@@ -104,11 +104,8 @@
     border-radius: 3px;
     padding: 3px;
 }
-#login-title, #signin-title{
-    margin-bottom: 30px; 
-}
 
-.btn{
+#loginForm .btn, #signinForm .btn{
     display: inline-block;
     margin: 10px;
     padding: 8px 14px;
@@ -118,7 +115,7 @@
     width: 180px;
     box-shadow: 0 1px 1px rgba(0,0,0,.1);
     cursor: pointer;
-    background: #228be6;
+    background: #e9ecef;
     color: white;
 }
 .google, .naver{
@@ -150,7 +147,9 @@ h2{
     text-align: center;
 }
 
-.sign{
-    width: 15%;
-    margin: 10px 0px;
+.error{
+    margin: 5px 0px 5px 0px;
+    color: red;
+    font-weight: bold;
+    font-size: 0.8em;
 }

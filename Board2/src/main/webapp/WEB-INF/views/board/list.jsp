@@ -6,9 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<link rel="stylesheet" type="text/css" href="resources/css/board.css" />
+<link rel="stylesheet" type="text/css" href="/css/list.css" />
+<script src="/js/list.js" defer="defer"></script>
 <body>
-	<%@ include file="./include/header.jsp"%>
+	<%@ include file="../include/header.jsp"%>
 	<section>
 		<div class="container">
 			<h2 class="list-name">자유게시판</h2>
@@ -30,6 +31,7 @@
 					<td class="vote center"><p>1</p></td>
 				</tr>
 			</table>
+			<button id="write-btn">글쓰기</button>
 		</div>
 		<aside>
 			<div class="aside">
@@ -68,6 +70,8 @@
 			</div>
 		</aside>
 	</section>
-	<%@ include file="./include/footer.jsp"%>
+	<!-- 페이지 정보 기억 -->
+	<input type="hidden" name="page">
+	<%@ include file="../include/footer.jsp"%>
 </body>
 </html>

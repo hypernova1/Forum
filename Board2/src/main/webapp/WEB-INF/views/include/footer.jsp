@@ -8,7 +8,7 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="screen" href="resources/css/footer.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/footer.css" />
 </head>
 <body>
     <footer>
