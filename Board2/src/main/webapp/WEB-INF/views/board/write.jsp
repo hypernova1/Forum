@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Developers</title>
 </head>
 <link rel="stylesheet" type="text/css" media="screen" href="/css/write.css" />
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -25,18 +25,18 @@
 <body>
 <%@ include file="../include/header.jsp" %>
 
-    <form action="./write" method="post">
+    <form action="./write" method="get" id="form">
 		<section class="wrapper">
             <input type="hidden" name="type" value="1">
             <div><input type="text" class="text" placeholder="제목" name="title"></div>
             <div><textarea name="content" id="summernote"></textarea></div>
             <div id="btn-wrapper">
-                <button type="button" class="submit">확인</button>
-                <button id="cancel">취소</button>
+                <button id="submit">확인</button>
+                <a id="cancel">취소</a>
             </div>
     	</section>
     </form>
-	<input type="hidden" value=${page.cri.page}">
+	<input type="hidden" value="${page.cri.page}">
 
 <%@ include file="../include/footer.jsp" %>
 </body>

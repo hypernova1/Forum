@@ -1,10 +1,15 @@
 document.querySelector('#cancel').addEventListener('click', function(){
-	location.href = "/board/list?" + document.querySelector('input[type=hidden]').value;
+	history.back();
+	
 })
+document.querySelector('#submit').addEventListener('click', function(){
+	document.querySelector('#form').method = "post";
+	document.querySelector('#form').submit();	
+});
 
 let a = function(){
 	
-	const btn = document.querySelector('#btn-wrapper>button');
+	const btn = document.querySelector('#submit');
 	
 	document.querySelector('form[action="./write"]').addEventListener('keyup', function(e){
 		switch(e.target.placeholder){

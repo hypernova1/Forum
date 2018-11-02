@@ -14,5 +14,5 @@ public interface BoardDAO {
 	public List<HashMap<String, Object>> readAll(Criteria cri);
 	public int countAll();
 	public void delete(Integer bno);
-
+	public void viewUpdate(Integer bo);
 }

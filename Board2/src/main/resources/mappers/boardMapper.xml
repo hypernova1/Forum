@@ -18,7 +18,9 @@
 	</delete>
 	
 	<select id="read" resultType="java.util.HashMap">
-		SELECT * FROM board WHERE bno = #{bno};
+		SELECT b.bno, b.title, b.content, b.regdate, b.recommend, b.view, b.comment, m.mno, m.name
+		FROM board b, member m
+		WHERE b.writer = m.mno AND bno = #{bno};
 	</select>
 	<select id="readAll" resultType="java.util.HashMap">
 		SELECT b.bno, b.originno, b.groupord, b. grouplayer, b.title, b.regdate, b.recommend, b.view, b.comment, m.name
@@ -31,5 +33,9 @@
 	<select id="countAll" resultType="int">
 		SELECT count(*) FROM board;
 	</select>
+	
+	<update id="viewUpdate">
+		UPDATE board SET view = view + 1 WHERE bno = #{bno}
+	</update>
 	
 </mapper>

@@ -11,7 +11,7 @@ public class CommentVO {
 	private Integer grouplayer;
 	private String title;
 	private String content;
-	private Integer writer;
+	private Integer mno;
 	private Date regdate;
 	
 	public Integer getCno() {
@@ -56,11 +56,11 @@ public class CommentVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Integer getWriter() {
-		return writer;
+	public Integer getMno() {
+		return mno;
 	}
-	public void setWriter(Integer writer) {
-		this.writer = writer;
+	public void setMno(Integer mno) {
+		this.mno = mno;
 	}
 	public Date getRegdate() {
 		return regdate;

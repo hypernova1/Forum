@@ -41,4 +41,8 @@ public class BoardService {
 		return dao.countAll();
 	}
 	
+	public void viewUpdate(Integer bno) {
+		dao.viewUpdate(bno);
+	}
+	
 }

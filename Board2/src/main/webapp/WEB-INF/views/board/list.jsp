@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Developers</title>
 </head>
 <link rel="stylesheet" type="text/css" href="/css/list.css" />
 <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo" rel="stylesheet">
@@ -32,7 +32,7 @@
 				<c:forEach items="${list}" var="board">
 					<tr class="post">
 						<td class="num center"><p>${board.bno}</p></td>
-						<td class="title"><p><a href="/board/post?bno=${board.bno}">${board.title}</a> <span class="comment">[${board.comment}]</span></p></td>
+						<td class="title"><p><a href="/board/post/${board.bno}">${board.title}</a> <span class="comment">[${board.comment}]</span></p></td>
 						<td class="writer center"><p>${board.name}</p></td>
 						<td class="view center"><p>${board.view}</p></td>
 						<td class="date center"><p><fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${board.regdate}"></fmt:formatDate></p></td>
@@ -60,13 +60,8 @@
 		<aside>
 			<div class="aside">
 				<h4>공지사항</h4>
-					<div class="title">즐거운 인생입니다 dsadadsadsadasdasdad</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
+					안녕하십니까. <br>
+					공지사항입니다.
 			</div>
 			<div class="aside">
 				<h4>

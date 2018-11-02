@@ -1,3 +1,4 @@
+
 document.querySelector('.menu.home').addEventListener('click', function () {
     location.href = "/";
 });

@@ -25,7 +25,7 @@ form .writer, form .pw{
     width: 10%;
 }
 
-button[type=submit], button.submit, #cancel {
+#submit, #cancel {
     display: inline-block;
     margin: 0 5px;
     padding: 8px 14px;
@@ -41,7 +41,6 @@ button[type=submit], button.submit, #cancel {
 #cancel{
 	background: #228be6;
 }
-
 
 #btn-wrapper{
     text-align: center;

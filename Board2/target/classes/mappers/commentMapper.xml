@@ -2,5 +2,33 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="comment">
+
+	<insert id="create" parameterType="CommentVO">
+		INSERT INTO comment (bno, content, mno) VALUES (#{bno}, #{content}, #{mno});
+	</insert>
+	
+	<update id="update">
+		UPDATE comment 
+		SET content = #{content} 
+		WHERE bno = #{bno} 
+		AND cno = #{cno};
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM comment 
+		WHERE bno = #{bno} 
+		AND cno = #{cno}
+	</delete>
+	
+	<select id="readAll" resultType="java.util.HashMap">
+		SELECT c.cno, c.bno, c.regdate, m.name 
+		FROM comment c, member m 
+		WHERE c.mno = m.mno AND bno = #{bno};
+	</select>
+	
+	<select id="count" resultType="int">
+		SELECT count(*) FROM comment WHERE bno=#{bno};
+	</select>	
 </mapper>
