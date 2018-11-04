@@ -98,7 +98,7 @@
 	text-align: center;
 }
 
-.text.id, .text.pw, #repw, #email, .text#id, .text#pw, .text#name {
+.text.id, .text.pw, #repw, #email, .text#id, .text#pw, .text#name, #mypage-id, #mypage-name, #mypage-pw, #mypage-repw, #mypage-email  {
 	height: 30px;
 	width: 220px;
 	margin: 8px;
@@ -106,7 +106,7 @@
 	padding: 3px;
 }
 
-#loginForm .btn, #signinForm .btn {
+#loginForm .btn, #signinForm .btn, #mypage-btn {
 	display: inline-block;
 	margin: 10px;
 	padding: 8px 14px;
@@ -173,6 +173,7 @@ h2 {
 }
 
 #complete-content {
+	font-family: 'Do Hyeon', sans-serif;
 	background-color: #fefefe;
 	margin: 15% auto;
 	padding: 20px;
@@ -183,7 +184,8 @@ h2 {
 		rgba(0, 0, 0, 0.19);
 	text-align: center;
 }
-#complete-btn{
+
+#complete-btn {
 	padding: 8px 14px;
 	border: 1px solid #DDD;
 	border-radius: 3px;
@@ -193,5 +195,33 @@ h2 {
 	cursor: pointer;
 	background: #228be6;
 	color: white;
-	
+}
+
+#logout, #myPage {
+	cursor: pointer;
+}
+
+#myPage-modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+#myPage-title{
+	margin: 5%;
+}
+#myPage-content {
+	border-radius: 3px;
+	text-align: center;
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 30%; /* Could be more or less, depending on screen size */
 }

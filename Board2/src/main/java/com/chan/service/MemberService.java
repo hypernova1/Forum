@@ -34,4 +34,12 @@ public class MemberService {
 		return 1; //없는 아이디
 		
 	}
+	
+	public int getuserid(String id) {
+		return dao.getuserid(id);
+	}
+	
+	public MemberVO getProfile(String id) {
+		return dao.getuser(id);
+	}
 }

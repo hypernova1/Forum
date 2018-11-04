@@ -25,6 +25,7 @@ public class CommentController {
 	//TODO: 계속 insert null값 나옴
 	@PostMapping("writecomment")
 	public ResponseEntity<Map<String, Object>> writeComment(@RequestBody CommentVO vo) {
+		System.out.println(vo.getMno());
 		commentService.writeComment(vo);
 		
 		return new ResponseEntity<>(commentService.returnList(vo.getBno()), HttpStatus.OK);

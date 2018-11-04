@@ -23,7 +23,7 @@
 	</delete>
 	
 	<select id="readAll" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-		SELECT c.cno, c.bno, c.regdate, m.name, c.content
+		SELECT c.cno, c.bno, c.regdate, m.name, c.content, m.mno
 		FROM comment c, member m 
 		WHERE bno = #{bno} and c.mno = m.mno;
 	</select>

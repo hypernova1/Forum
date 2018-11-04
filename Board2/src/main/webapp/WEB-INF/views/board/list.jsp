@@ -40,7 +40,9 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<button id="write-btn">글쓰기</button>
+			<c:if test="${sessionScope.mno ne null}">
+				<button id="write-btn">글쓰기</button>
+			</c:if>
 			<ul>
 				<c:if test="${page.prev}">
 					<li><a href="list?page=${page.startPage-1}">&laquo;</a></li>

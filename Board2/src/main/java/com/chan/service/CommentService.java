@@ -44,6 +44,7 @@ public class CommentService {
 			obj.put("regdate", sdf.format(dao.readAll(bno).get(i).get("regdate")));
 			obj.put("name", dao.readAll(bno).get(i).get("name"));
 			obj.put("content", dao.readAll(bno).get(i).get("content"));
+			obj.put("mno", dao.readAll(bno).get(i).get("mno"));
 			
 			list.add(obj);
 		}
@@ -75,6 +76,7 @@ public class CommentService {
 			obj.put("regdate", sdf.format(dao.readAll(bno).get(i).get("regdate")));
 			obj.put("name", dao.readAll(bno).get(i).get("name"));
 			obj.put("content", dao.readAll(bno).get(i).get("content"));
+			obj.put("mno", dao.readAll(bno).get(i).get("mno"));
 			
 			list.add(obj);
 		}

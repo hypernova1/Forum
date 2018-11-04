@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 import com.chan.domain.BoardVO;
 import com.chan.pagination.Criteria;
 import com.chan.persistence.BoardDAO;
+import com.chan.persistence.RecommendDAO;
 
 @Service
 public class BoardService {
 
 	@Autowired
 	private BoardDAO dao;
+	@Autowired
+	private RecommendDAO recommendDao;
 	
 	public void writePost(BoardVO vo) {
 		vo.setOriginno(1);
@@ -43,6 +46,21 @@ public class BoardService {
 	
 	public void viewUpdate(Integer bno) {
 		dao.viewUpdate(bno);
+	}
+	
+	public void updateComment(Integer bno, Integer mno, boolean recom) {
+		
+		if(recommendDao.select(bno, mno) == 0) {
+			return;
+		}
+		
+		if (recom) {
+			dao.increasecom(bno);
+		} else {
+			dao.decreasecom(bno);
+		}
+		recommendDao.insert(bno, mno);
+
 	}
 	
 }

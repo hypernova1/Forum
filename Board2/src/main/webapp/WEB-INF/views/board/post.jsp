@@ -24,8 +24,8 @@
         	${board.content}
         </div>
         <div id="recommend" class="center">
-            <div class="inline btn">추천</div>
-            <div class="inline btn">반대</div>
+            <div class="inline btn" id="true">추천</div>
+            <div class="inline btn" id="false">반대</div>
         </div>
         <div id="modify-box">
 	        <form action="./modify" method="get" id="modifyForm">

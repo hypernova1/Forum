@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chan.domain.BoardVO;
 import com.chan.pagination.Criteria;
 import com.chan.pagination.Pagination;
 import com.chan.service.BoardService;
+import com.chan.service.MemberService;
 import com.mysql.cj.util.StringUtils;
 
 @Controller
@@ -33,7 +35,8 @@ public class BoardController {
 	
 	@GetMapping("list")
 	public String board(Model model, Criteria cri, HttpSession session) {
-
+		
+		System.out.println(session.getAttribute("id"));
 		Pagination pagination = new Pagination();
 		List<HashMap<String, Object>> list = boardService.readAllPost(cri);
 		pagination.setCri(cri);
@@ -59,7 +62,7 @@ public class BoardController {
 	
 	@GetMapping("post")
 	public String post(Model model, @ModelAttribute Criteria cri, Integer bno
-			, HttpServletRequest req, HttpServletResponse res) {
+			, HttpServletRequest req, HttpServletResponse res, HttpSession session) {
 		//조회수 구현
 		Cookie cookies[] = req.getCookies();
 		Map<String, String> map = new HashMap<>();
@@ -105,9 +108,12 @@ public class BoardController {
 		return "redirect:./list?page=" + cri.getPage();
 	}
 	
-	@PostMapping("recommend")
-	public String recommend(BoardVO vo, Criteria cri) {
+	@GetMapping("recommend")
+	public String recommend(@RequestParam Integer bno, @RequestParam Integer mno
+			, @RequestParam Criteria cri, @RequestParam boolean recom) {
+		System.out.println(bno + " " + mno + " " + cri.getPage());
+		boardService.updateComment(bno, mno, recom);
 		
-		return "redirect:./post?bno=" + vo.getBno() + "&page=" + cri.getPage();
+		return "redirect:./post?bno=" + bno + "&page=" + cri.getPage();
 	}
 }

@@ -14,24 +14,29 @@ document.querySelector('.menu.notice').addEventListener('click', function () {
     location.href = "/notice";
 });
 
-
-let loginModal = document.querySelector('.modal.login');
-let btn = document.querySelector("#login");
-btn.addEventListener('click', function () {
-    loginModal.style.display = "block";
-})
-
-loginModal.addEventListener('click', function (event) {
-    if (event.target == loginModal) {
-        loginModal.style.display = "none";
-    }
-})
+if(document.querySelector('.modal.login')){
+	let loginModal = document.querySelector('.modal.login');
+	let btn = document.querySelector("#login");
+	if(document.querySelector("#login") != null){
+		btn.addEventListener('click', function () {
+			loginModal.style.display = "block";
+		})
+	}
+	
+	loginModal.addEventListener('click', function (event) {
+		if (event.target == loginModal) {
+			loginModal.style.display = "none";
+		}
+	})
+}
 
 let signinModal = document.querySelector('.modal.signin');
 let btn2 = document.querySelector("#signin");
-btn2.addEventListener('click', function () {
-    signinModal.style.display = "block";
-})
+if(btn2 != null){
+	btn2.addEventListener('click', function () {
+	signinModal.style.display = "block";
+	})
+}
 
 window.onclick = function (event) {
     if (event.target == signinModal) {
@@ -44,7 +49,6 @@ document.querySelector('#signinBtn').addEventListener('click', function () {
     loginModal.style.display = "none";
     signinModal.style.display = "block";
 })
-
 
 // 회원가입 유효성 검사
 let idval;
@@ -197,11 +201,10 @@ function get(rest, url, obj) {
 	            pw: document.querySelector('.text.pw').value
 	        }).then(
 	                result => {
-	                	console.log(result);
-                       if(result == "true"){
-                    	   location.href = location.href;
+                       if(result == "false"){
+                    	   document.querySelector('#loginForm .error').innerHTML = '잘못된 계정입니다.';
                         } else{
-                        	document.querySelector('#loginForm .error').innerHTML = '잘못된 계정입니다.';
+                        	location.href = location.href;
                         }
                     }
 	        )
@@ -219,6 +222,24 @@ function get(rest, url, obj) {
 
         document.querySelector('#complete-container').style.display = "block";
     })
+    if(document.querySelector('#logout') != null){
+    	document.querySelector('#logout').addEventListener('click', function(){
+    		get('POST', '/login/logout', null);
+    		location.href = location.href;
+    	})
+    }
+    
+    //마이페이지 눌렀을 때 - ajax로 서버에서 멤버 받아온 후 뿌려줌
+    if(document.querySelector('#myPage') != null){
+    	document.querySelector('#myPage').addEventListener('click', function () {
+    		document.querySelector('#myPage-modal').style.display = "block";
+    		
+    		get("GET", "/member/profile", {
+    			id: document.querySelector('#sessionId').value
+    		})
+    	})
+    }
+    
 })();
 
 document.querySelector('#loginForm').onkeyup = function(){
@@ -229,3 +250,11 @@ document.querySelector('#loginForm').onkeyup = function(){
 		document.querySelector('.btn.ajax').addEventListener('click', null);
     }
 }
+
+
+//마이페이지
+document.querySelector('#myPage-modal').addEventListener('click', function (event) {
+	if (event.target == document.querySelector('#myPage-modal')) {
+		document.querySelector('#myPage-modal').style.display = "none";
+	}
+})

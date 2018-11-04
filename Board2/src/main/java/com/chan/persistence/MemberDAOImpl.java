@@ -36,6 +36,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO getuser(String id) {
 		return session.selectOne("member.getuser", id);
 	}
+
+	@Override
+	public int getuserid(String id) {
+		return session.selectOne("member.getuserid", id);
+	}
 	
 	
 

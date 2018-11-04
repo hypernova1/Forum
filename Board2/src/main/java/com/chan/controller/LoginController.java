@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chan.domain.MemberVO;
 import com.chan.service.MemberService;
+import com.mysql.cj.Session;
 
 @Controller
 public class LoginController {
@@ -26,15 +27,14 @@ public class LoginController {
 	}
 	
 	@PostMapping("login")
-	public @ResponseBody ResponseEntity<?> login(@RequestBody MemberVO vo, HttpSession seesion){
-		System.out.println(vo.getId());
+	public @ResponseBody ResponseEntity<?> login(@RequestBody MemberVO vo, HttpSession session){
+
 		if(memberService.login(vo) == 1 || memberService.login(vo) == 2) {
 			return new ResponseEntity<>(false, HttpStatus.OK);
 		}
+		session.setAttribute("mno", memberService.getuserid(vo.getId()));
 		
-		seesion.setAttribute("id", vo.getId());
-		
-		return new ResponseEntity<>(true, HttpStatus.OK);
+		return new ResponseEntity<>(memberService.getuserid(vo.getId()), HttpStatus.OK);
 	}
 	
 	@PostMapping("login/idcheck")
@@ -52,5 +52,13 @@ public class LoginController {
 		memberService.join(vo);
 		
 		return new ResponseEntity<String>("success", HttpStatus.OK);
+	}
+	
+	@PostMapping("/login/logout")
+	public @ResponseBody ResponseEntity<?> logout(HttpSession session){
+		
+		session.removeAttribute("mno");
+		
+		return null;
 	}
 }
