@@ -13,7 +13,7 @@
 <script src="/js/list.js" defer="defer"></script>
 <body>
 	<%@ include file="../include/header.jsp"%>
-	<section>
+	<section id="list-section">
 		<div class="container">
 			<div>
 				<h2 class="list-name">자유게시판</h2>
@@ -32,7 +32,7 @@
 				<c:forEach items="${list}" var="board">
 					<tr class="post">
 						<td class="num center"><p>${board.bno}</p></td>
-						<td class="title"><p><a href="/board/post/${board.bno}">${board.title}</a> <span class="comment">[${board.comment}]</span></p></td>
+						<td class="title"><p><a href="/board/post?bno=${board.bno}&page=${page.cri.page}">${board.title}</a> <span class="list-comment">[${board.comment}]</span></p></td>
 						<td class="writer center"><p>${board.name}</p></td>
 						<td class="view center"><p>${board.view}</p></td>
 						<td class="date center"><p><fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${board.regdate}"></fmt:formatDate></p></td>

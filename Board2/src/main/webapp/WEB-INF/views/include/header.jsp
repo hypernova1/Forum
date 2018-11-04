@@ -7,9 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/header.css" />
+    <link rel="stylesheet" type="text/css" href="/css/footer.css" />
     <script src="/js/header.js" defer="defer"></script>
 </head>
 <body>
@@ -53,8 +55,9 @@
                 <div id="signinForm">
                     <h2 id="signin-title">Sign In</h2>
                     <div class="error">&nbsp;</div>
-                    <form action="/signin" method="POST">
+                    <form>
                         <input type="text" class="text" placeholder="아이디 (4~12 자)" id="id">  
+                        <input type="text" class="text" placeholder="닉네임" id="name">  
                         <input type="password" class="text" placeholder="비밀번호 (영문,숫자 혼합 6~20자)" id="pw">  
                         <input type="password" class="text" placeholder="비밀번호 재입력" id="repw">  
                         <input type="email" class="text" placeholder="이메일" id="email">  
@@ -63,5 +66,14 @@
                 </div>
             </div>
         </div>
+        
+        <div id="complete-container">
+        	<div id="complete-content">
+            	가입이 정상적으로 처리되었습니다.
+            	<br>
+            <button id="complete-btn">확인</button>
+        	</div>
+   		</div>
+        
 </body>
 </html>

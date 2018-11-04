@@ -51,4 +51,14 @@ public class BoardDAOImpl implements BoardDAO {
 		session.update("board.viewUpdate", bno);
 	}
 
+	@Override
+	public void increasecom(Integer bno) {
+		session.update("board.increasecom", bno);
+	}
+
+	@Override
+	public void decreasecom(Integer bno) {
+		session.update("board.decreasecom");
+	}
+
 }

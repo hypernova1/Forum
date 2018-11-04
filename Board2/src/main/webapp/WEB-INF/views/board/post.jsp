@@ -1,19 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Developers</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/post.css" />
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-</head>
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/post.css" />
+   	<script src="/js/post.js" defer="defer"></script>
 <body>
 <%@ include file="../include/header.jsp" %>
-    <section>
+    <section id="post-section">
         <div id="title">
             <div id="title-header">
                 <h2 class="left">${board.title}</h2>
@@ -34,23 +28,16 @@
             <div class="inline btn">반대</div>
         </div>
         <div id="modify-box">
-            <div class="inline modify btn">수정</div>
-            <div class="inline modify btn">삭제</div>
+	        <form action="./modify" method="get" id="modifyForm">
+	            <div class="inline modify btn">수정</div>
+	            <div class="inline delete btn">삭제</div>
+			    <input type="hidden" value="${criteria.page}" name="page">
+			    <input type="hidden" value="${board.bno}" name="bno">
+	        </form>
         </div>
         <div id="comment-box">
-            <div id="comment-view">comments &nbsp; <span>${board.comment }</span></div>
+            <div id="comment-view">comments &nbsp; <span></span></div>
             <ul id="comment-list">
-                <li class="comment">
-                    <div>
-                        <div class="left">닉네임</div>
-                        <div class="remove-btn left">수정</div>
-                        <div class="remove-btn left">삭제</div>
-                        <div class="right">2018-10-31</div>
-                    </div>
-                    <br>
-                    <div class="comment-content">아진짜 짱낭</div>
-                    
-                </li>
             </ul>
             <div id="comment-write">
                 <div id="comment-write-head" class="inline">댓글 작성</div>
@@ -60,10 +47,10 @@
             </div>
         </div>
         <div class="btn list">목록 보기</div>
+        
     </section>
     <input type="hidden" value="${board.bno}" id="bno">
     <input type="hidden" value="${board.mno}" id="mno">
+    <input type="hidden" value="${criteria.page}" id="page">
 <%@ include file="../include/footer.jsp" %>
-</body>
-<script src="/js/post.js"></script>
-</html>
+

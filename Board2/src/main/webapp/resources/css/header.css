@@ -69,7 +69,7 @@
 	transition: all 0.5s;
 }
 
- .header.modal {
+.header.modal {
 	display: none;
 	position: fixed;
 	z-index: 1;
@@ -87,69 +87,111 @@
 	margin: 15% auto;
 	padding: 20px;
 	border: 1px solid #888;
-    width: 20%;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	width: 20%;
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
 }
 
-#loginForm, #signinForm{
-    margin: 50px;
-    text-align: center;
+#loginForm, #signinForm {
+	margin: 50px;
+	text-align: center;
 }
 
-.text{
-    height: 25px;
-    width: 200px;
-    margin: 8px;
-    border-radius: 3px;
-    padding: 3px;
+.text.id, .text.pw, #repw, #email, .text#id, .text#pw, .text#name {
+	height: 30px;
+	width: 220px;
+	margin: 8px;
+	border-radius: 3px;
+	padding: 3px;
 }
 
-#loginForm .btn, #signinForm .btn{
-    display: inline-block;
-    margin: 10px;
-    padding: 8px 14px;
-    border: 1px solid #DDD;
-    border-radius: 3px;
-    font-weight: bold;
-    width: 180px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
-    cursor: pointer;
-    background: #e9ecef;
-    color: white;
-}
-.google, .naver{
-    margin:  2px 0px 0px 0px;
-}
-.google{
-    background: white;
-    color: black;
-}
-.naver{
-    background: green;
-    color: black;
+#loginForm .btn, #signinForm .btn {
+	display: inline-block;
+	margin: 10px;
+	padding: 8px 14px;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	font-weight: bold;
+	width: 180px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+	cursor: pointer;
+	background: #e9ecef;
+	color: white;
 }
 
-.etc{
-    margin: 10px;
-    font-size: 0.8em;
-    color: #868e96;
-}
-.etc>span{
-    cursor: pointer;
+.google, .naver {
+	margin: 2px 0px 0px 0px;
 }
 
-h2{
-    font-family: 'Merriweather', serif;
+.google {
+	background: white;
+	color: black;
 }
 
-#signinForm{
-    text-align: center;
+.naver {
+	background: green;
+	color: black;
 }
 
-.error{
-    margin: 5px 0px 5px 0px;
-    color: red;
-    font-weight: bold;
-    font-size: 0.8em;
+.etc {
+	margin: 10px;
+	font-size: 0.8em;
+	color: #868e96;
+}
+
+.etc>span {
+	cursor: pointer;
+}
+
+h2 {
+	font-family: 'Merriweather', serif;
+}
+
+#signinForm {
+	text-align: center;
+}
+
+.error {
+	margin: 5px 0px 5px 0px;
+	color: red;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+#complete-container {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+#complete-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 15%;
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	text-align: center;
+}
+#complete-btn{
+	padding: 8px 14px;
+	border: 1px solid #DDD;
+	border-radius: 3px;
+	font-weight: bold;
+	width: 80px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+	cursor: pointer;
+	background: #228be6;
+	color: white;
+	
 }

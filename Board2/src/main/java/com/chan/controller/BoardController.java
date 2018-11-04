@@ -7,20 +7,21 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.chan.domain.BoardVO;
 import com.chan.pagination.Criteria;
 import com.chan.pagination.Pagination;
 import com.chan.service.BoardService;
-import com.chan.service.CommentService;
 import com.mysql.cj.util.StringUtils;
 
 @Controller
@@ -29,14 +30,12 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService boardService;
-	@Autowired
-	private CommentService commentService;
 	
 	@GetMapping("list")
-	public String board(Model model, Criteria cri) {
+	public String board(Model model, Criteria cri, HttpSession session) {
+
 		Pagination pagination = new Pagination();
 		List<HashMap<String, Object>> list = boardService.readAllPost(cri);
-		System.out.println("dasdsdadas");
 		pagination.setCri(cri);
 		pagination.setTotalCount(boardService.totalCount());
 		
@@ -51,15 +50,16 @@ public class BoardController {
 		return "board/write";
 	}
 	@PostMapping("write")
-	public String writePost(BoardVO board) {
+	public String writePost(BoardVO board, HttpSession session) {
 		System.out.println("포스트라이트");
-		board.setWriter(1);
+		board.setWriter((Integer) session.getAttribute("id"));
 		boardService.writePost(board);
 		return "redirect:./list";
 	}
 	
-	@GetMapping("post/{bno}")
-	public String post(Model model, Criteria cri, @PathVariable Integer bno, HttpServletRequest req, HttpServletResponse res) {
+	@GetMapping("post")
+	public String post(Model model, @ModelAttribute Criteria cri, Integer bno
+			, HttpServletRequest req, HttpServletResponse res) {
 		//조회수 구현
 		Cookie cookies[] = req.getCookies();
 		Map<String, String> map = new HashMap<>();
@@ -80,8 +80,34 @@ public class BoardController {
 			res.addCookie(cookie);
 			boardService.viewUpdate(bno);
 		}
-		System.out.println(boardService.readPost(bno).get("mno"));
+		
 		model.addAttribute("board",boardService.readPost(bno));
 		return "board/post"; 
+	}
+	
+	@GetMapping("modify")
+	public String modifyGet(Integer bno, Model model, @ModelAttribute Criteria cri) {
+		model.addAttribute("board", boardService.readPost(bno));
+		return "board/modify";
+	}
+	
+	@PostMapping("modify")
+	public String modifyPost(Criteria cri, BoardVO vo) {
+		System.out.println(cri.getPage());
+		
+		return "board/post?bno=" + vo.getBno() + "&page=" + cri.getPage();
+	}
+	
+	@PostMapping("delete")
+	public String delete(BoardVO vo, Criteria cri) {
+		boardService.deletePost(vo.getBno());
+		
+		return "redirect:./list?page=" + cri.getPage();
+	}
+	
+	@PostMapping("recommend")
+	public String recommend(BoardVO vo, Criteria cri) {
+		
+		return "redirect:./post?bno=" + vo.getBno() + "&page=" + cri.getPage();
 	}
 }

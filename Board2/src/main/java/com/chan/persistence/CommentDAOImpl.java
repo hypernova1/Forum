@@ -18,7 +18,7 @@ public class CommentDAOImpl implements CommentDAO {
 	
 	@Override
 	public void create(CommentVO vo) {
-		session.insert("comment.create");
+		session.insert("comment.create", vo);
 	}
 
 	@Override
@@ -27,12 +27,9 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public List<HashMap<String, Object>> readAll(Integer bno, Integer cno) {
-		Map<String, Object> param = new HashMap<>();
-		param.put("bno", bno);
-		param.put("cno", cno);
-		
-		return session.selectList("comment.readAll", param);
+	public List<HashMap<String, Object>> readAll(Integer bno) {
+
+		return session.selectList("comment.readAll", bno);
 	}
 
 
@@ -45,8 +42,8 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public int count() {
-		return session.selectOne("comment.count");
+	public int count(Integer bno) {
+		return session.selectOne("comment.count", bno);
 	}
 
 }

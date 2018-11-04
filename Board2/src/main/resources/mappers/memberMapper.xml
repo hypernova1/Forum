@@ -3,4 +3,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
+	
+	<insert id="create" parameterType="MemberVO">
+		INSERT INTO member (id, pw, email, name, type) VALUES (#{id}, sha(#{pw}), #{email}, #{name}, #{type});
+	</insert>
+	
+	<select id="idcheck" resultType="int">
+		SELECT count(*) FROM member WHERE id = #{id}
+	</select>
+	
+	<update id="update" parameterType="MemberVO">
+		UPDATE member SET pw = #{pw}, email = #{email}, name = #{name} WHERE mno = #{mno};
+	</update>
+	<select id="getpw" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT sha(#{pw});
+	</select>
+	<select id="getuser" parameterType="java.lang.String" resultType="MemberVO">
+		SELECT * FROM member WHERE id = #{id};
+	</select>
+
 </mapper>

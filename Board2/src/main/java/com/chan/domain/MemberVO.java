@@ -4,6 +4,14 @@ public class MemberVO {
 	
 	private Integer mno;
 	private String id;
+	private String pw;
+	
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
 	private String email;
 	private String name;
 	private Integer type;

@@ -1,7 +1,5 @@
 package com.chan.controller;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chan.domain.CommentVO;
@@ -26,10 +25,9 @@ public class CommentController {
 	//TODO: 계속 insert null값 나옴
 	@PostMapping("writecomment")
 	public ResponseEntity<Map<String, Object>> writeComment(@RequestBody CommentVO vo) {
-		System.out.println(vo.getBno());
 		commentService.writeComment(vo);
 		
-		return new ResponseEntity<>(commentService.returnList(vo.getBno(), vo.getCno()), HttpStatus.OK);
+		return new ResponseEntity<>(commentService.returnList(vo.getBno()), HttpStatus.OK);
 	}
 	
 	@PostMapping("updatecomment")
@@ -37,13 +35,14 @@ public class CommentController {
 		
 		commentService.updateComment(vo);
 		
-		return new ResponseEntity<>(commentService.returnList(vo.getBno(), vo.getCno()), HttpStatus.OK);
+		return new ResponseEntity<>(commentService.returnList(vo.getBno()), HttpStatus.OK);
 	}
 	
 	@GetMapping("readcomment")
-	public ResponseEntity<List<HashMap<String, Object>>> commentlist(Integer bno, Integer cno){
+	public ResponseEntity<Map<String, Object>> commentlist(@RequestParam int bno){
 		
-		return new ResponseEntity<List<HashMap<String, Object>>>(commentService.readComment(bno, cno), HttpStatus.OK);
+		System.out.println("왜 안돼");
+		return new ResponseEntity<>(commentService.readComment(bno), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("deletecomment")
@@ -51,7 +50,7 @@ public class CommentController {
 		
 		commentService.deleteComment(bno, cno);
 		
-		return new ResponseEntity<>(commentService.returnList(bno, cno), HttpStatus.OK);
+		return new ResponseEntity<>(commentService.returnList(bno), HttpStatus.OK);
 	}
 	
 	

@@ -37,5 +37,11 @@
 	<update id="viewUpdate">
 		UPDATE board SET view = view + 1 WHERE bno = #{bno}
 	</update>
+	<update id="increasecom">
+		UPDATE board SET comment = comment + 1 WHERE bno = #{bno}
+	</update>
+	<update id="decreasecom">
+		UPDATE board SET view = comment - 1 WHERE bno = #{bno}
+	</update>
 	
 </mapper>

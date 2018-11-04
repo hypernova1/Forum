@@ -9,7 +9,7 @@ public interface CommentDAO {
 
 	public void create(CommentVO vo);
 	public void update(CommentVO vo);
-	public List<HashMap<String, Object>> readAll(Integer bno, Integer co);
+	public List<HashMap<String, Object>> readAll(Integer bno);
 	public void delete(Integer bno, Integer cno);
-	public int count();
+	public int count(Integer bno);
 }

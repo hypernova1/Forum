@@ -6,7 +6,7 @@
 <mapper namespace="comment">
 
 	<insert id="create" parameterType="CommentVO">
-		INSERT INTO comment (bno, content, mno) VALUES (#{bno}, #{content}, #{mno});
+		INSERT INTO comment(bno, content, mno) VALUES(#{bno}, #{content}, #{mno});
 	</insert>
 	
 	<update id="update">
@@ -22,13 +22,13 @@
 		AND cno = #{cno}
 	</delete>
 	
-	<select id="readAll" resultType="java.util.HashMap">
-		SELECT c.cno, c.bno, c.regdate, m.name 
+	<select id="readAll" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+		SELECT c.cno, c.bno, c.regdate, m.name, c.content
 		FROM comment c, member m 
-		WHERE c.mno = m.mno AND bno = #{bno};
+		WHERE bno = #{bno} and c.mno = m.mno;
 	</select>
 	
 	<select id="count" resultType="int">
 		SELECT count(*) FROM comment WHERE bno=#{bno};
-	</select>	
+	</select>
 </mapper>

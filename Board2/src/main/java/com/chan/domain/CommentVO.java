@@ -1,7 +1,5 @@
 package com.chan.domain;
 
-import java.util.Date;
-
 public class CommentVO {
 
 	private Integer cno;
@@ -12,7 +10,7 @@ public class CommentVO {
 	private String title;
 	private String content;
 	private Integer mno;
-	private Date regdate;
+	private String regdate;
 	
 	public Integer getCno() {
 		return cno;
@@ -62,10 +60,10 @@ public class CommentVO {
 	public void setMno(Integer mno) {
 		this.mno = mno;
 	}
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 	

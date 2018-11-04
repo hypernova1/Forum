@@ -4,9 +4,9 @@ import com.chan.domain.MemberVO;
 
 public interface MemberDAO {
 
-	public void create();
-	public void update();
-	public MemberVO read();
-	public void delete();
-	
+	public void create(MemberVO vo);
+	public void update(MemberVO vo);
+	public int idcheck(String id);
+	public String getpw(String pw);
+	public MemberVO getuser(String id);
 }
