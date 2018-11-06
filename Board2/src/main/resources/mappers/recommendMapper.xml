@@ -5,7 +5,7 @@
 	<insert id="insert">
 		INSERT INTO recommend (bno, mno) VALUES (#{bno}, #{mno});
 	</insert>
-	<select id="select" resultType="int">
+	<select id="select" resultType="int" parameterType="java.util.HashMap">
 		SELECT count(*) FROM recommend WHERE bno = #{bno} AND mno = #{mno};
 	</select>
 

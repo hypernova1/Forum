@@ -15,6 +15,7 @@ public class RecommendImpl implements RecommendDAO {
 	@Override
 	public void insert(Integer bno, Integer mno) {
 		Map<String, Object> param = new HashMap<>();
+		System.out.println(bno + " " + mno);
 		param.put("bno", bno);
 		param.put("mno", mno);
 		session.insert("recommend.insert", param);
@@ -26,7 +27,7 @@ public class RecommendImpl implements RecommendDAO {
 		param.put("bno", bno);
 		param.put("mno", mno);
 		
-		return session.insert("recommend.select", param);
+		return session.selectOne("recommend.select", param);
 	}
 
 }

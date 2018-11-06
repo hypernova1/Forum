@@ -33,8 +33,13 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberVO getuser(String id) {
-		return session.selectOne("member.getuser", id);
+	public MemberVO getuserById(String id) {
+		return session.selectOne("member.getuserById", id);
+	}
+	
+	@Override
+	public MemberVO getuserByMno(Integer mno) {
+		return session.selectOne("member.getuserByMno", mno);
 	}
 
 	@Override

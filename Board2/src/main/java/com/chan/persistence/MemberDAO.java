@@ -8,6 +8,7 @@ public interface MemberDAO {
 	public void update(MemberVO vo);
 	public int idcheck(String id);
 	public String getpw(String pw);
-	public MemberVO getuser(String id);
+	public MemberVO getuserById(String id);
+	public MemberVO getuserByMno(Integer Mno);
 	public int getuserid(String id);
 }

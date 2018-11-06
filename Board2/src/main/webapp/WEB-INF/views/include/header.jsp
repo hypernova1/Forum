@@ -26,7 +26,7 @@
 	                    <span id="login">로그인</span>&#5;<span id="signin">회원가입</span>
 	                </c:when>
 	                <c:otherwise>
-	                	<span id="myPage">마이페이지</span>&#5;<span id="logout">로그아웃</span>
+	                	<span id="myPage">정보수정</span>&#5;<span id="logout">로그아웃</span>
 	                </c:otherwise>
                 </c:choose>
                 </div>
@@ -44,6 +44,7 @@
    	<div class="header modal login">
         <div class="header modal-content">
             <div id="loginForm">
+            <form>
                 <h2 id="login-title">Login</h2>
                 <div class="error">&nbsp;</div>
                 <input type="text" class="text id" placeholder="아이디">  
@@ -55,6 +56,7 @@
                     <span id="signinBtn">회원가입</span> | 
                     <span id="pwBtn">비밀번호 찾기</span>
                 </div>
+            </form>
             </div>
         </div>
 	</div>
@@ -85,9 +87,11 @@
 	
     <div id="myPage-modal">
        	<div id="myPage-content">
+       	<form>
         	<div><h2 id="myPage-title">정보 수정</h2></div>
+        	<div class="error">&nbsp;</div>
             <div>
-                <input type="text" value="" id="mypage-id">
+                <input type="text" value="" id="mypage-id" readonly="readonly">
             </div>
             <div>
                 <input type="text" value="" placeholder="닉네임" id="mypage-name">
@@ -103,6 +107,7 @@
             </div>
             <br>
         	<button id="mypage-btn">확인</button>
+       	</form>
        	</div>
     </div>
     

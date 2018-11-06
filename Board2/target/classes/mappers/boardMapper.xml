@@ -40,8 +40,17 @@
 	<update id="increasecom">
 		UPDATE board SET comment = comment + 1 WHERE bno = #{bno}
 	</update>
+	
 	<update id="decreasecom">
 		UPDATE board SET comment = comment - 1 WHERE bno = #{bno}
+	</update>
+	
+	<update id="increaserecom">
+		UPDATE board SET recommend = recommend + 1 WHERE bno = #{bno}
+	</update>
+	
+	<update id="decreaserecom">
+		UPDATE board SET recommend = recommend - 1 WHERE bno = #{bno}
 	</update>
 	
 </mapper>

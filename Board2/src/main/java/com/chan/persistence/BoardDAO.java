@@ -17,4 +17,6 @@ public interface BoardDAO {
 	public void viewUpdate(Integer bno);
 	public void increasecom(Integer bno);
 	public void decreasecom(Integer bno);
+	public void increaserecom(Integer bno);
+	public void decreaserecom(Integer bno);
 }

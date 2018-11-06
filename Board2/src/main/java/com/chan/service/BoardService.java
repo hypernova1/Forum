@@ -48,16 +48,15 @@ public class BoardService {
 		dao.viewUpdate(bno);
 	}
 	
-	public void updateComment(Integer bno, Integer mno, boolean recom) {
-		
-		if(recommendDao.select(bno, mno) == 0) {
+	public void updateRecommend(Integer bno, Integer mno, boolean recom) {
+		if(recommendDao.select(bno, mno) != 0) {
 			return;
 		}
 		
 		if (recom) {
-			dao.increasecom(bno);
+			dao.increaserecom(bno);
 		} else {
-			dao.decreasecom(bno);
+			dao.decreaserecom(bno);
 		}
 		recommendDao.insert(bno, mno);
 

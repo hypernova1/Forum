@@ -62,28 +62,4 @@ public class CommentService {
 	public int countComment(Integer bno) {
 		return dao.count(bno);
 	}
-
-	public Map<String, Object> returnList(@RequestBody Integer bno) {
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh.mm");
-		HashMap<String, Object> comment = new HashMap<>();
-		List<HashMap<String, Object>> list = new ArrayList<>();
-		
-		for(int i = 0; i < dao.readAll(bno).size(); i++) {
-			HashMap<String, Object> obj = new HashMap<>();
-			obj.put("bno", dao.readAll(bno).get(i).get("bno"));
-			obj.put("cno", dao.readAll(bno).get(i).get("cno"));
-			obj.put("regdate", sdf.format(dao.readAll(bno).get(i).get("regdate")));
-			obj.put("name", dao.readAll(bno).get(i).get("name"));
-			obj.put("content", dao.readAll(bno).get(i).get("content"));
-			obj.put("mno", dao.readAll(bno).get(i).get("mno"));
-			
-			list.add(obj);
-		}
-
-		comment.put("list", list);
-		comment.put("count", countComment(bno));
-
-		return comment;
-	}
 }

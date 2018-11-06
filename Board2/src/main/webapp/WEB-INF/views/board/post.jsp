@@ -42,8 +42,8 @@
             <div id="comment-write">
                 <div id="comment-write-head" class="inline">댓글 작성</div>
                 <div id="-comment-write-box">
-                    <textarea class=""></textarea>
-                <button class="write right" id="content-btn">등록</button></div>
+                    <textarea id="content-textarea"></textarea>
+                <button class="write right" id="content-btn" disabled="disabled">등록</button></div>
             </div>
         </div>
         <div class="btn list">목록 보기</div>

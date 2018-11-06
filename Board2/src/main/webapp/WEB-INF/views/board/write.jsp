@@ -25,7 +25,7 @@
             <div><input type="text" class="text" placeholder="제목" name="title"></div>
             <div><textarea name="content" id="summernote"></textarea></div>
             <div id="btn-wrapper">
-                <button id="submit">확인</button>
+                <button id="submit" disabled="disabled">확인</button>
                 <a id="cancel">취소</a>
             </div>
     	</section>

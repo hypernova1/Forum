@@ -1,21 +1,22 @@
-document.querySelector('#submit').addEventListener('click', function(){
-	document.querySelector('#form').submit();
-});
-
 (function(){
 	
 	const btn = document.querySelector('#submit');
+	window.addEventListener('load', () => {
+		btn.style.backgroundColor = "#228be6";
+	})
 	
 	document.querySelector('form[action="./modify"]').addEventListener('keyup', function(e){
+		let title = document.querySelector('#title').value
+		console.log(e)
 		switch(e.target.placeholder){
-		case "제목": content = e.path[0].value;
+		case "제목": title = e.path[0].value;
 		}
-		if(content != ""){
+		if(title != ""){
 			btn.style.backgroundColor = "#228be6";
-			btn.type = "submit";
+			btn.disabled = false;
 		} else{
 			btn.style.backgroundColor = "#e9ecef";
-			btn.type = "button";
+			btn.disabled = true;
 		}
 	})
 })()

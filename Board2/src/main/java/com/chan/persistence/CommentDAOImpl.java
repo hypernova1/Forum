@@ -23,12 +23,12 @@ public class CommentDAOImpl implements CommentDAO {
 
 	@Override
 	public void update(CommentVO vo) {
+		System.out.println(vo.getCno());
 		session.update("comment.update", vo);
 	}
 
 	@Override
 	public List<HashMap<String, Object>> readAll(Integer bno) {
-
 		return session.selectList("comment.readAll", bno);
 	}
 

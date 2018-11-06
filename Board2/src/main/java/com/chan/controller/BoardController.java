@@ -15,15 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.chan.domain.BoardVO;
 import com.chan.pagination.Criteria;
 import com.chan.pagination.Pagination;
 import com.chan.service.BoardService;
-import com.chan.service.MemberService;
 import com.mysql.cj.util.StringUtils;
 
 @Controller
@@ -36,7 +33,6 @@ public class BoardController {
 	@GetMapping("list")
 	public String board(Model model, Criteria cri, HttpSession session) {
 		
-		System.out.println(session.getAttribute("id"));
 		Pagination pagination = new Pagination();
 		List<HashMap<String, Object>> list = boardService.readAllPost(cri);
 		pagination.setCri(cri);
@@ -54,8 +50,8 @@ public class BoardController {
 	}
 	@PostMapping("write")
 	public String writePost(BoardVO board, HttpSession session) {
-		System.out.println("포스트라이트");
-		board.setWriter((Integer) session.getAttribute("id"));
+		System.out.println(session.getAttribute("mno"));
+		board.setWriter((Integer) session.getAttribute("mno"));
 		boardService.writePost(board);
 		return "redirect:./list";
 	}
@@ -90,15 +86,17 @@ public class BoardController {
 	
 	@GetMapping("modify")
 	public String modifyGet(Integer bno, Model model, @ModelAttribute Criteria cri) {
+		System.out.println(bno);
 		model.addAttribute("board", boardService.readPost(bno));
 		return "board/modify";
 	}
 	
 	@PostMapping("modify")
 	public String modifyPost(Criteria cri, BoardVO vo) {
-		System.out.println(cri.getPage());
 		
-		return "board/post?bno=" + vo.getBno() + "&page=" + cri.getPage();
+		boardService.updatePost(vo);
+		
+		return "redirect:/board/post?bno=" + vo.getBno() + "&page=" + cri.getPage();
 	}
 	
 	@PostMapping("delete")
@@ -109,10 +107,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("recommend")
-	public String recommend(@RequestParam Integer bno, @RequestParam Integer mno
-			, @RequestParam Criteria cri, @RequestParam boolean recom) {
+	public String recommend(Integer bno, Integer mno, Criteria cri, boolean recom) {
 		System.out.println(bno + " " + mno + " " + cri.getPage());
-		boardService.updateComment(bno, mno, recom);
+		boardService.updateRecommend(bno, mno, recom);
 		
 		return "redirect:./post?bno=" + bno + "&page=" + cri.getPage();
 	}

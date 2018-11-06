@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chan.domain.MemberVO;
 import com.chan.service.MemberService;
-import com.mysql.cj.Session;
 
 @Controller
 public class LoginController {

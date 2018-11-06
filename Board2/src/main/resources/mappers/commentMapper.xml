@@ -9,17 +9,15 @@
 		INSERT INTO comment(bno, content, mno) VALUES(#{bno}, #{content}, #{mno});
 	</insert>
 	
-	<update id="update">
+	<update id="update" parameterType="CommentVO">
 		UPDATE comment 
 		SET content = #{content} 
-		WHERE bno = #{bno} 
-		AND cno = #{cno};
+		WHERE cno = #{cno};
 	</update>
 	
 	<delete id="delete">
 		DELETE FROM comment 
-		WHERE bno = #{bno} 
-		AND cno = #{cno}
+		WHERE cno = #{cno}
 	</delete>
 	
 	<select id="readAll" parameterType="java.lang.Integer" resultType="java.util.HashMap">

@@ -119,7 +119,9 @@
 	background: #e9ecef;
 	color: white;
 }
-
+#mypage-btn{
+	background: rgb(34, 139, 230);
+}
 .google, .naver {
 	margin: 2px 0px 0px 0px;
 }

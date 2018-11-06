@@ -21,9 +21,8 @@ public class MemberService {
 	}
 	
 	public int login(MemberVO vo) {
-		System.out.println(dao.getuser(vo.getId()));
-		if(dao.getuser(vo.getId()) != null) {
-			if(dao.getpw(vo.getPw()) == dao.getuser(vo.getId()).getPw()) {
+		if(dao.getuserById(vo.getId()) != null) {
+			if(dao.getpw(vo.getPw()) == dao.getuserById(vo.getId()).getPw()) {
 				return 2; //비번 틀림
 			} else {
 				System.out.println("로그인");
@@ -39,7 +38,12 @@ public class MemberService {
 		return dao.getuserid(id);
 	}
 	
-	public MemberVO getProfile(String id) {
-		return dao.getuser(id);
+	public MemberVO getProfile(Integer mno) {
+		return dao.getuserByMno(mno);
+	}
+	
+	public void updateProfile(MemberVO vo) {
+		
+		dao.update(vo);
 	}
 }
