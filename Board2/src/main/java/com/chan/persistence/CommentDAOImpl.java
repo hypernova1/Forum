@@ -46,4 +46,9 @@ public class CommentDAOImpl implements CommentDAO {
 		return session.selectOne("comment.count", bno);
 	}
 
+	@Override
+	public List<CommentVO> currentComment() {
+		return session.selectList("comment.currentComment");
+	}
+
 }

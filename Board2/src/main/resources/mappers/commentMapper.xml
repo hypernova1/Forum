@@ -29,4 +29,8 @@
 	<select id="count" resultType="int">
 		SELECT count(*) FROM comment WHERE bno=#{bno};
 	</select>
+	
+	<select id="currentComment" resultType="CommentVO">
+		SELECT bno, content FROM comment ORDER BY regdate DESC LIMIT 1,7;
+	</select>
 </mapper>

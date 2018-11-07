@@ -13,7 +13,7 @@ body{
 .list-name {
     float: left;
 	padding: 5px;
-	font-family: 'Nanum Myeongjo', serif;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 #img{
 	width: 15px;
@@ -31,7 +31,20 @@ body{
 	margin: 5px;
 	border-radius: 3px;
 	border: 1px solid #adb5bd;
-	
+}
+#searchBtn, #searchType{
+	float:right;
+	margin: 5px 0px;
+	padding: 4px;
+	border-radius: 3px;
+	border: 1px solid #ced4da;
+	box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	cursor: pointer;
+}
+
+#searchBtn{
+	background: rgb(34, 139, 230);
+	color: white;
 }
 
 #post-list {
@@ -154,4 +167,18 @@ li:visited{
 
 .active .idx{
 	background: #343a40;
+}
+
+ol{
+	list-style: none;
+}
+ol>li{
+	list-style: none;
+	display: block;
+}
+
+.popular{
+	padding: 3px 5px 0px 5px;
+	border: 1px;
+	
 }

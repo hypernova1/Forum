@@ -65,6 +65,7 @@ h2 {
 #content {
 	padding: 30px 15px;
 	min-height: 300px;
+	word-break: break-all;
 }
 
 #recommend {
@@ -195,7 +196,7 @@ a{
 	color: black;
 }
 
-.comment-writer{
+.comment-writer, #writer{
 	color: #868e96;
 }
 

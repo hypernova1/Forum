@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/post.css" />
-   	<script src="/js/post.js" defer="defer"></script>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Developers</title>
+</head>
+<link rel="stylesheet" type="text/css" href="/css/post.css" />
+<script src="/js/post.js" defer="defer"></script>  
 <body>
-<%@ include file="../include/header.jsp" %>
+	<%@ include file="../include/header.jsp" %>
     <section id="post-section">
         <div id="title">
             <div id="title-header">
@@ -28,12 +32,15 @@
             <div class="inline btn" id="false">반대</div>
         </div>
         <div id="modify-box">
+        <c:if test="${sessionScope.mno eq board.mno}">
 	        <form action="./modify" method="get" id="modifyForm">
 	            <div class="inline modify btn">수정</div>
 	            <div class="inline delete btn">삭제</div>
-			    <input type="hidden" value="${criteria.page}" name="page">
-			    <input type="hidden" value="${board.bno}" name="bno">
+	            <input type="hidden" name="bno" value="${board.bno}">
 	        </form>
+        </c:if>
+	    <input type="hidden" value="${criteria.page}" name="page">
+	    <input type="hidden" value="${board.bno}" name="bno">
         </div>
         <div id="comment-box">
             <div id="comment-view">comments &nbsp; <span></span></div>
@@ -52,5 +59,6 @@
     <input type="hidden" value="${board.bno}" id="bno">
     <input type="hidden" value="${board.mno}" id="mno">
     <input type="hidden" value="${criteria.page}" id="page">
-<%@ include file="../include/footer.jsp" %>
-
+	<%@ include file="../include/footer.jsp" %>
+</body>
+</html>

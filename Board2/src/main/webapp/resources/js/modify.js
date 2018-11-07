@@ -1,13 +1,8 @@
 (function(){
 	
-	const btn = document.querySelector('#submit');
-	window.addEventListener('load', () => {
-		btn.style.backgroundColor = "#228be6";
-	})
-	
-	document.querySelector('form[action="./modify"]').addEventListener('keyup', function(e){
+	document.querySelector('form[action="/board/modify"]').addEventListener('keyup', function(e){
+		console.log(e.target)
 		let title = document.querySelector('#title').value
-		console.log(e)
 		switch(e.target.placeholder){
 		case "제목": title = e.path[0].value;
 		}

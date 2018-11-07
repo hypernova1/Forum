@@ -28,12 +28,16 @@ public class LoginController {
 	@PostMapping("login")
 	public @ResponseBody ResponseEntity<?> login(@RequestBody MemberVO vo, HttpSession session){
 
-		if(memberService.login(vo) == 1 || memberService.login(vo) == 2) {
+		if(memberService.login(vo) == 1) {
+			return new ResponseEntity<>(false, HttpStatus.OK);
+		} else if(memberService.login(vo) == 2) {
 			return new ResponseEntity<>(false, HttpStatus.OK);
 		}
+		
 		session.setAttribute("mno", memberService.getuserid(vo.getId()));
 		
-		return new ResponseEntity<>(memberService.getuserid(vo.getId()), HttpStatus.OK);
+		return new ResponseEntity<>(true, HttpStatus.OK);
+
 	}
 	
 	@PostMapping("login/idcheck")

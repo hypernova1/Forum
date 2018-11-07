@@ -8,8 +8,7 @@
 <title>Developers</title>
 </head>
 <link rel="stylesheet" type="text/css" href="/css/list.css" />
-<link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 <script src="/js/list.js" defer="defer"></script>
 <body>
 	<%@ include file="../include/header.jsp"%>
@@ -17,8 +16,20 @@
 		<div class="container">
 			<div>
 				<h2 class="list-name">자유게시판</h2>
-				<input type="text" id="searchText" placeholder="검색어 입력..">
-				<img src="https://www.aseankorea.org/images/common/search_icon2.png" id="img">
+				<form action="/board/list">
+					<button id="searchBtn">검색</button>
+					<input type="text" name="keyword" id="searchText" placeholder="검색어 입력..">
+					<select name="searchType" id="searchType">
+						<option value="1"
+							<c:out value="${criteria.searchType eq '1' ? 'selected' : ''}"/>>제목</option>
+						<option value="2"
+							<c:out value="${criteria.searchType eq '2' ? 'selected' : ''}"/>>내용</option>
+						<option value="3"
+							<c:out value="${criteria.searchType eq '3' ? 'selected' : ''}"/>>작성자</option>
+						<option value="4"
+							<c:out value="${criteria.searchType eq '4' ? 'selected' : ''}"/>>전체</option>
+					</select>
+				</form>
 			</div>
 			<table id="post-list">
 				<tr id="post-header">
@@ -45,16 +56,16 @@
 			</c:if>
 			<ul>
 				<c:if test="${page.prev}">
-					<li><a href="list?page=${page.startPage-1}"><button class="idx">&laquo;</button></a></li>
+					<li><a href="list?page=${page.startPage-1}&searchType=${criteria.searchType}&keyword=${criteria.keyword}"><button class="idx">&laquo;</button></a></li>
 				</c:if>
 				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="idx">
 					<li
 						<c:out value="${page.cri.page == idx ? 'class =active':''}"/>>
-						<a href="list?page=${idx}"><button class="idx">${idx}</button></a>		
+						<a href="list?page=${idx}&searchType=${criteria.searchType}&keyword=${criteria.keyword}"><button class="idx">${idx}</button></a>		
 					</li>
 				</c:forEach>
 				<c:if test="${page.next && page.endPage > 0}">
-					<li><a href="list?page=${page.endPage + 1}"><button class="idx">&raquo;</button></a></li>
+					<li><a href="list?page=${page.endPage + 1}&searchType=${criteria.searchType}&keyword=${criteria.keyword}"><button class="idx">&raquo;</button></a></li>
 				</c:if>
 			</ul>
 
@@ -66,28 +77,24 @@
 					공지사항입니다.
 			</div>
 			<div class="aside">
-				<h4>
-					조회수 Up
-					</h4>
-					<div class="title">즐거운 인생입니다 dsadadsadsadasdasdad</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
+				<h4>인기글</h4>
+				<table>
+					<c:forEach items="${popular.popularPost}" var="popular">
+						<tr>
+							<td class="popular"><a href="/board/post?bno=${popular.bno}">${popular.title}</a></td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 			<div class="aside">
-				<h4>
-					최근 댓글
-					</h4>
-					<div class="title">즐거운 인생입니다 dsadadsadsadasdasdad</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
-					<div class="title">ddd</div>
+				<h4>최근 댓글</h4>
+				<table>
+					<c:forEach items="${popular.currentComment}" var="comment">
+					<tr>
+						<td class="popular"><a href="/board/post?bno=${comment.bno}">${comment.content}</a></td>
+					</tr>	
+					</c:forEach>
+				</table>
 			</div>
 		</aside>
 	</section>

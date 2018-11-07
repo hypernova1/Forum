@@ -21,12 +21,14 @@ public class MemberService {
 	}
 	
 	public int login(MemberVO vo) {
+		
 		if(dao.getuserById(vo.getId()) != null) {
-			if(dao.getpw(vo.getPw()) == dao.getuserById(vo.getId()).getPw()) {
-				return 2; //비번 틀림
-			} else {
+			if(dao.getpw(vo.getPw()).equals(dao.getuserById(vo.getId()).getPw())) {
 				System.out.println("로그인");
 				return 0; //로그인 완료
+			} else {
+				System.out.println("비번틀림");
+				return 2; //비번 틀림
 			}
 		} 
 		System.out.println("없는아이디");

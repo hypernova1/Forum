@@ -13,7 +13,7 @@
 	</select>
 	
 	<update id="update" parameterType="MemberVO">
-		UPDATE member SET <if test="pw != ''">pw = #{pw}, </if>email = #{email}, name = #{name} WHERE mno = #{mno};
+		UPDATE member SET <if test="pw != ''">pw = sha(#{pw}), </if>email = #{email}, name = #{name} WHERE mno = #{mno};
 	</update>
 	<select id="getpw" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT sha(#{pw});

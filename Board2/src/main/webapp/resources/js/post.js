@@ -6,17 +6,20 @@ document.querySelector('.btn.list').addEventListener('click', () => {
 (function () {
 	
     //포스트 수정 페이지로 이동
-    document.querySelector('.inline.modify.btn').addEventListener('click', () => {
-    	location.href = "/board/modify?bno=" + document.querySelector('#bno').value + "&page=" + document.querySelector('#page').value;
-    })
+    if(document.querySelector('.inline.modify.btn')){
+		document.querySelector('.inline.modify.btn').addEventListener('click', () => {
+	    	location.href = "/board/modify?bno=" + document.querySelector('#bno').value + "&page=" + document.querySelector('#page').value;
+	    })
+    }
     
     //포스트 삭제
-    document.querySelector('.inline.delete.btn').addEventListener('click', function(){
-    	console.log(document.querySelector('#modifyForm').method);
-    	document.querySelector('#modifyForm').method = "post";
-    	document.querySelector('#modifyForm').action = "./delete";
-    	document.querySelector('#modifyForm').submit();	
-    });
+    if(document.querySelector('.inline.delete.btn')){
+	    document.querySelector('.inline.delete.btn').addEventListener('click', function(){
+	    	document.querySelector('#modifyForm').method = "post";
+	    	document.querySelector('#modifyForm').action = "./delete";
+	    	document.querySelector('#modifyForm').submit();	
+	    });
+    }
     
     //추천
     document.querySelector("#true").addEventListener('click', () => {

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chan.domain.CommentVO;
+import com.chan.service.BoardService;
 import com.chan.service.CommentService;
 
 @RestController
@@ -27,7 +28,6 @@ public class CommentController {
 	//TODO: 계속 insert null값 나옴
 	@PostMapping("/write")
 	public ResponseEntity<Map<String, Object>> writeComment(@RequestBody CommentVO vo) {
-		System.out.println(vo.getMno());
 		commentService.writeComment(vo);
 		
 		return new ResponseEntity<>(commentService.readComment(vo.getBno()), HttpStatus.OK);
@@ -49,7 +49,6 @@ public class CommentController {
 	@PostMapping("remove")
 	public ResponseEntity<Map<String, Object>> removeComment(@RequestBody CommentVO vo){
 		
-		System.out.println(vo.getBno() + " " + vo.getCno());
 		commentService.deleteComment(vo.getBno(), vo.getCno());
 		
 		return new ResponseEntity<>(commentService.readComment(vo.getBno()), HttpStatus.OK);
@@ -68,7 +67,5 @@ public class CommentController {
 		
 		return new ResponseEntity<>(commentService.readComment(bno), HttpStatus.OK);
 	}
-	
-	
 	
 }

@@ -12,4 +12,5 @@ public interface CommentDAO {
 	public List<HashMap<String, Object>> readAll(Integer bno);
 	public void delete(Integer bno, Integer cno);
 	public int count(Integer bno);
+	public List<CommentVO> currentComment();
 }

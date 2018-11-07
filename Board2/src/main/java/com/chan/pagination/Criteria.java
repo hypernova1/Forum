@@ -5,7 +5,7 @@ public class Criteria {
 	private Integer page;
 	private Integer perPageNum;
 	private String keyword;
-	private Integer type;
+	private Integer searchType;
 	
 	{
 		this.page = 1;
@@ -20,12 +20,12 @@ public class Criteria {
 		this.keyword = keyword;
 	}
 
-	public Integer getType() {
-		return type;
+	public Integer getSearchType() {
+		return searchType;
 	}
 
-	public void setType(Integer type) {
-		this.type = type;
+	public void setSearchType(Integer searchType) {
+		this.searchType = searchType;
 	}
 
 	public int getPage() {

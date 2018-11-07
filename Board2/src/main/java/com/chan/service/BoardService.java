@@ -2,6 +2,7 @@ package com.chan.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.chan.domain.BoardVO;
 import com.chan.pagination.Criteria;
 import com.chan.persistence.BoardDAO;
+import com.chan.persistence.CommentDAO;
 import com.chan.persistence.RecommendDAO;
 
 @Service
@@ -18,6 +20,8 @@ public class BoardService {
 	private BoardDAO dao;
 	@Autowired
 	private RecommendDAO recommendDao;
+	@Autowired
+	private CommentDAO commentDao;
 	
 	public void writePost(BoardVO vo) {
 		vo.setOriginno(1);
@@ -40,8 +44,8 @@ public class BoardService {
 		dao.delete(bno);
 	}
 	
-	public int totalCount() {
-		return dao.countAll();
+	public int totalCount(Criteria cri) {
+		return dao.countAll(cri);
 	}
 	
 	public void viewUpdate(Integer bno) {
@@ -60,6 +64,15 @@ public class BoardService {
 		}
 		recommendDao.insert(bno, mno);
 
+	}
+	
+	public Map<String, Object> getPopularPost(){
+		
+		Map<String, Object> popular = new HashMap<>();
+		popular.put("popularPost", dao.popularPost());
+		popular.put("currentComment", commentDao.currentComment());
+		
+		return popular;
 	}
 	
 }

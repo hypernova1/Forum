@@ -31,15 +31,17 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping("list")
-	public String board(Model model, Criteria cri, HttpSession session) {
+	public String board(Model model, @ModelAttribute Criteria cri, HttpSession session) {
 		
 		Pagination pagination = new Pagination();
 		List<HashMap<String, Object>> list = boardService.readAllPost(cri);
+		Map<String, Object> popular = boardService.getPopularPost();
 		pagination.setCri(cri);
-		pagination.setTotalCount(boardService.totalCount());
+		pagination.setTotalCount(boardService.totalCount(cri));
 		
 		model.addAttribute("list", list);
 		model.addAttribute("page", pagination);
+		model.addAttribute("popular", popular);
 		
 		return "board/list";
 	}
@@ -81,12 +83,12 @@ public class BoardController {
 		}
 		
 		model.addAttribute("board",boardService.readPost(bno));
+		
 		return "board/post"; 
 	}
 	
 	@GetMapping("modify")
 	public String modifyGet(Integer bno, Model model, @ModelAttribute Criteria cri) {
-		System.out.println(bno);
 		model.addAttribute("board", boardService.readPost(bno));
 		return "board/modify";
 	}
@@ -101,6 +103,7 @@ public class BoardController {
 	
 	@PostMapping("delete")
 	public String delete(BoardVO vo, Criteria cri) {
+		System.out.println(vo.getBno());
 		boardService.deletePost(vo.getBno());
 		
 		return "redirect:./list?page=" + cri.getPage();

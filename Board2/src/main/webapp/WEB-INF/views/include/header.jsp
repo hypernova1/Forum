@@ -4,17 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/header.css" />
-    <link rel="stylesheet" type="text/css" href="/css/footer.css" />
-    <script src="/js/header.js" defer="defer"></script>
+<meta charset="utf-8" />
+<title>Developers</title>
 </head>
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/header.css" />
 <body>
     <header class="header-wrap">
         <div class="header-container">
@@ -44,19 +40,17 @@
    	<div class="header modal login">
         <div class="header modal-content">
             <div id="loginForm">
-            <form>
-                <h2 id="login-title">Login</h2>
-                <div class="error">&nbsp;</div>
-                <input type="text" class="text id" placeholder="아이디">  
-                <input type="password" class="text pw" placeholder="비밀번호">  
-                <div class="btn ajax">로그인</div>
-                <div class="btn naver">네이버 로그인</div>
-                <div class="btn google">구글 로그인</div>
-                <div class="etc">
-                    <span id="signinBtn">회원가입</span> | 
-                    <span id="pwBtn">비밀번호 찾기</span>
-                </div>
-            </form>
+	            <h2 id="login-title">Login</h2>
+	            <div class="error">&nbsp;</div>
+	            <input type="text" class="text id" placeholder="아이디">  
+	            <input type="password" class="text pw" placeholder="비밀번호">  
+	            <button class="btn ajax" disabled="disabled">로그인</button>
+	            <button class="btn naver">네이버 로그인</button>
+	            <button class="btn google">구글 로그인</button>
+	            <div class="etc">
+	                <span id="signinBtn">회원가입</span> | 
+	                <span id="pwBtn">비밀번호 찾기</span>
+	            </div>
             </div>
         </div>
 	</div>
@@ -65,14 +59,12 @@
             <div id="signinForm">
                 <h2 id="signin-title">Sign In</h2>
                 <div class="error">&nbsp;</div>
-                <form>
-                    <input type="text" class="text" placeholder="아이디 (4~12 자)" id="id">  
-                    <input type="text" class="text" placeholder="닉네임" id="name">  
-                    <input type="password" class="text" placeholder="비밀번호 (영문,숫자 혼합 6~20자)" id="pw">  
-                    <input type="password" class="text" placeholder="비밀번호 재입력" id="repw">  
-                    <input type="email" class="text" placeholder="이메일" id="email">  
-                    <button class="btn" type="button">가입</button>
-                </form>
+                <input type="text" class="text" placeholder="아이디 (4~12 자)" id="id">  
+                <input type="text" class="text" placeholder="닉네임" id="name">  
+                <input type="password" class="text" placeholder="비밀번호 (영문,숫자 혼합 6~20자)" id="pw">  
+                <input type="password" class="text" placeholder="비밀번호 재입력" id="repw">  
+                <input type="email" class="text" placeholder="이메일" id="email">  
+                <button class="btn" type="button" disabled="disabled">가입</button>
             </div>
         </div>
     </div>
@@ -87,31 +79,30 @@
 	
     <div id="myPage-modal">
        	<div id="myPage-content">
-       	<form>
-        	<div><h2 id="myPage-title">정보 수정</h2></div>
-        	<div class="error">&nbsp;</div>
-            <div>
-                <input type="text" value="" id="mypage-id" readonly="readonly">
-            </div>
-            <div>
-                <input type="text" value="" placeholder="닉네임" id="mypage-name">
-            </div>
-            <div>
-                <input type="password" placeholder="비밀번호" id="mypage-pw">
-            </div>
-            <div>
-                <input type="password" placeholder="비밀번호 재입력" id="mypage-repw">
-            </div>
-            <div>
-                <input type="email" placeholder="이메일" value="" id="mypage-email">
-            </div>
-            <br>
-        	<button id="mypage-btn">확인</button>
-       	</form>
+       	<div><h2 id="myPage-title">정보 수정</h2></div>
+       	<div class="error">&nbsp;</div>
+           <div>
+               <input type="text" value="" id="mypage-id" readonly="readonly">
+           </div>
+           <div>
+               <input type="text" value="" placeholder="닉네임" id="mypage-name">
+           </div>
+           <div>
+               <input type="password" placeholder="비밀번호" id="mypage-pw">
+           </div>
+           <div>
+               <input type="password" placeholder="비밀번호 재입력" id="mypage-repw">
+           </div>
+           <div>
+               <input type="email" placeholder="이메일" value="" id="mypage-email">
+           </div>
+           <br>
+       	<button id="mypage-btn">확인</button>
        	</div>
     </div>
     
     <input type="hidden" value="${sessionScope.mno}" id="session">
-        
+    
 </body>
+<script src="/js/header.js"></script>
 </html>

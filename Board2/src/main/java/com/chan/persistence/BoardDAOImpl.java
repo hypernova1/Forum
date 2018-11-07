@@ -42,8 +42,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int countAll() {
-		return session.selectOne("board.countAll");
+	public int countAll(Criteria cri) {
+		return session.selectOne("board.countAll", cri);
 	}
 
 	@Override
@@ -69,6 +69,11 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public void decreaserecom(Integer bno) {
 		session.update("board.decreaserecom", bno);
+	}
+
+	@Override
+	public List<BoardVO> popularPost() {
+		return session.selectList("board.popularPost");
 	}
 
 

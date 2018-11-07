@@ -23,15 +23,19 @@
 		WHERE b.writer = m.mno AND bno = #{bno};
 	</select>
 	<select id="readAll" resultType="java.util.HashMap">
-		SELECT b.bno, b.originno, b.groupord, b. grouplayer, b.title, b.regdate, b.recommend, b.view, b.comment, m.name
+		SELECT b.bno, b.writer, b.originno, b.groupord, b. grouplayer, b.title, b.regdate, b.recommend, b.view, b.comment, m.name
 		FROM board b, member m
 		WHERE b.writer = m.mno
+		<include refid="search"></include>
 		ORDER BY b.bno DESC
 		LIMIT #{pageStart}, 20;
 	</select>
 	
 	<select id="countAll" resultType="int">
-		SELECT count(*) FROM board;
+		SELECT count(*)
+		FROM board b, member m
+		WHERE b.writer = m.mno
+		<include refid="search"></include>
 	</select>
 	
 	<update id="viewUpdate">
@@ -52,5 +56,32 @@
 	<update id="decreaserecom">
 		UPDATE board SET recommend = recommend - 1 WHERE bno = #{bno}
 	</update>
+	
+	<select id="popularPost" resultType="BoardVO">
+		SELECT bno, title FROM board ORDER BY view DESC, recommend DESC LIMIT 1,7
+	</select>
+	
+	
+	
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 1">
+				AND title LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 2">
+				AND b.content LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 3">
+				AND m.name LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 4">
+				AND (b.title LIKE CONCAT('%', #{keyword}, '%')
+				OR b.content LIKE CONCAT('%', #{keyword}, '%')
+				OR m.name LIKE CONCAT('%', #{keyword}, '%'))
+			</if>
+		
+		</if>
+	</sql>
 	
 </mapper>
