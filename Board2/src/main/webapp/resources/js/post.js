@@ -26,14 +26,16 @@ document.querySelector('.btn.list').addEventListener('click', () => {
     	location.href = "/board/recommend?bno=" 
     		+ document.querySelector('#bno').value
     		+ "&page=" + document.querySelector('#page').value
-    		+ "&recom=true&mno=" + document.querySelector('#session').value;
+    		+ "&recom=true&mno=" + document.querySelector('#session').value
+    		+ "&type=1";
     })
     //반대
     document.querySelector("#false").addEventListener('click', () => {
     	location.href = "/board/recommend?bno=" 
     		+ document.querySelector('#bno').value
     		+ "&page=" + document.querySelector('#page').value
-    		+ "&recom=false&mno=" + document.querySelector('#session').value;
+    		+ "&recom=false&mno=" + document.querySelector('#session').value
+    		+ "&type=1";
     })
 
     //댓글 페이지에 뿌려주기
@@ -51,7 +53,8 @@ document.querySelector('.btn.list').addEventListener('click', () => {
                 <br>
                 <div class="comment-content">${list[i].content}</div>
             </li>`
-            } else{
+            } else 
+            {
                 document.querySelector('#comment-list').innerHTML += `<li class="comment">
                 <div>
                     <div class="left comment-writer">${list[i].name}</div>
@@ -73,12 +76,13 @@ document.querySelector('.btn.list').addEventListener('click', () => {
         mno: "",
         bno: "",
         cno: "",
-        content: ""
+        content: "",
+        type: 1
     }
 
     // 포스트 페이지 로딩시 댓글 출력
     window.addEventListener('load', () => {
-        url = '/comment/read?bno=' + document.querySelector('#bno').value;
+        url = '/comment/read?type=1&bno=' + document.querySelector('#bno').value;
         rest = 'GET';
 
         get(rest, url, commentObj).then(
@@ -117,7 +121,7 @@ document.querySelector('.btn.list').addEventListener('click', () => {
     	//삭제
     	if(e.target.className.split(' ')[0] == "remove-btn"){
     		e.target.addEventListener('click', () => {
-    			get('POST', '/comment/remove', { bno: document.querySelector('#bno').value, cno: e.target.className.split(' ')[2]})
+    			get('POST', '/comment/remove', { bno: document.querySelector('#bno').value, cno: e.target.className.split(' ')[2], type: 1})
     			.then(result => {
                     document.querySelector('#comment-list').innerHTML = "";
     				getCommentList(result);
@@ -136,7 +140,8 @@ document.querySelector('.btn.list').addEventListener('click', () => {
                 get("POST", "/comment/modify", {
                     cno: e.target.parentElement.parentElement.parentElement.id,
                     bno: document.querySelector('#bno').value,
-                    content: document.querySelector('#modify-textarea').value
+                    content: document.querySelector('#modify-textarea').value,
+                    type: 1
                 }).then( result => {
                 	document.querySelector('#comment-list').innerHTML = "";
     				getCommentList(result);

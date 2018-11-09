@@ -5,8 +5,8 @@
   
 <mapper namespace="board">
 
-	<insert id="create" parameterType="BoardVO">
-		INSERT INTO board(title, content, writer, type) VALUES (#{title}, #{content}, #{writer}, #{type});
+	<insert id="create" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="bno">
+		INSERT INTO board(bno, title, content, writer) VALUES (default, #{title}, #{content}, #{writer});
 	</insert>
 	
 	<update id="update">
@@ -23,7 +23,7 @@
 		WHERE b.writer = m.mno AND bno = #{bno};
 	</select>
 	<select id="readAll" resultType="java.util.HashMap">
-		SELECT b.bno, b.writer, b.originno, b.groupord, b. grouplayer, b.title, b.regdate, b.recommend, b.view, b.comment, m.name
+		SELECT b.bno, b.writer, b.title, b.regdate, b.recommend, b.view, b.comment, m.name
 		FROM board b, member m
 		WHERE b.writer = m.mno
 		<include refid="search"></include>

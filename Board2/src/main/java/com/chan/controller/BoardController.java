@@ -52,10 +52,8 @@ public class BoardController {
 	}
 	@PostMapping("write")
 	public String writePost(BoardVO board, HttpSession session) {
-		System.out.println(session.getAttribute("mno"));
 		board.setWriter((Integer) session.getAttribute("mno"));
-		boardService.writePost(board);
-		return "redirect:./list";
+		return "redirect:./post?bno=" + boardService.writePost(board);
 	}
 	
 	@GetMapping("post")
@@ -110,9 +108,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("recommend")
-	public String recommend(Integer bno, Integer mno, Criteria cri, boolean recom) {
+	public String recommend(Integer bno, Integer mno, Criteria cri, boolean recom, Integer type) {
 		System.out.println(bno + " " + mno + " " + cri.getPage());
-		boardService.updateRecommend(bno, mno, recom);
+		boardService.updateRecommend(bno, mno, recom, type);
 		
 		return "redirect:./post?bno=" + bno + "&page=" + cri.getPage();
 	}

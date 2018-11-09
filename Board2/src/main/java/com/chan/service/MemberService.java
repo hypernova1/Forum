@@ -48,4 +48,5 @@ public class MemberService {
 		
 		dao.update(vo);
 	}
+	
 }

@@ -30,7 +30,7 @@ window.addEventListener('load', () => {
         location.href = "/board/list";
     });
     document.querySelector('.menu.qna').addEventListener('click', () => {
-        location.href = "/qna";
+        location.href = "/qna/list";
     });
     document.querySelector('.menu.chatting').addEventListener('click', () => {
         location.href = "/chatting";
@@ -173,9 +173,10 @@ document.querySelector('#signinForm').addEventListener('keyup', (e) => {
         signinBtn.disabled = true;
     }
 
-    document.querySelector('#complete-btn').addEventListener('click', () => {
-        location.href = location.href;
-    })
+})
+
+document.querySelector('#complete-btn').addEventListener('click', () => {
+	location.href = location.href;
 })
 
 // ajax 요청 함수
@@ -221,7 +222,7 @@ function get(rest, url, obj) {
 						document.querySelector('#loginForm .error').innerHTML = '잘못된 계정입니다.';
 					} else if(result = "true") {
 					// 맞으면
-					location.href = location.href;
+						location.reload();
 					}
 				}
 		)
@@ -242,7 +243,7 @@ function get(rest, url, obj) {
     // 로그인 후 로그아웃 버튼 눌렀을 때
     if (document.querySelector('#logout') != null) {
         document.querySelector('#logout').addEventListener('click', () => {
-            get('POST', '/login/logout', null).then(result => location.href = location.href);
+            get('POST', '/login/logout', null).then(() => location.reload());
         })
     }
 

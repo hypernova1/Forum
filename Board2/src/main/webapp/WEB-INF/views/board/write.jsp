@@ -24,7 +24,7 @@
             <div><textarea name="content" id="editor"></textarea></div>
             <div id="btn-wrapper">
                 <button id="submit" disabled="disabled">확인</button>
-                <a id="cancel">취소</a>
+                <button type="button" id="cancel">취소</button>
             </div>
     	</section>
     </form>
@@ -33,18 +33,15 @@
 	<%@ include file="../include/footer.jsp" %>
 </body>
 <script>
-	ClassicEditor
-	.create( document.querySelector( '#editor' ), {
+	ClassicEditor.create(document.querySelector('#editor'), {
 	    ckfinder: {
 	        uploadUrl: '/board/write'
 	      }
-	    } )
-	.then( editor => {
-	    console.log( editor.setData('') );
-	} )
-	.catch( error => {
-	    console.error( error );
-	} );
+	    }).then(editor => {
+	    console.log(editor.setData(''));
+	}).catch(error => {
+	    console.error(error);
+	});
 
 
 </script>

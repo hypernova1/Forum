@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/header.css" />
 <body>
-    <header class="header-wrap">
+    <header class="header-wrap">f
         <div class="header-container">
             <div class="header-body none-drag">
                 <h1 class="logo">Developer Comunity</h1>
@@ -45,8 +45,6 @@
 	            <input type="text" class="text id" placeholder="아이디">  
 	            <input type="password" class="text pw" placeholder="비밀번호">  
 	            <button class="btn ajax" disabled="disabled">로그인</button>
-	            <button class="btn naver">네이버 로그인</button>
-	            <button class="btn google">구글 로그인</button>
 	            <div class="etc">
 	                <span id="signinBtn">회원가입</span> | 
 	                <span id="pwBtn">비밀번호 찾기</span>
@@ -100,6 +98,7 @@
        	<button id="mypage-btn">확인</button>
        	</div>
     </div>
+    
     
     <input type="hidden" value="${sessionScope.mno}" id="session">
     

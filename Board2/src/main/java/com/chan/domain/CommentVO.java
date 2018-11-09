@@ -11,7 +11,14 @@ public class CommentVO {
 	private String content;
 	private Integer mno;
 	private String regdate;
+	private Integer type;
 	
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
 	public Integer getCno() {
 		return cno;
 	}

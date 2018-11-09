@@ -6,13 +6,13 @@
 <mapper namespace="comment">
 
 	<insert id="create" parameterType="CommentVO">
-		INSERT INTO comment(bno, content, mno) VALUES(#{bno}, #{content}, #{mno});
+		INSERT INTO comment(bno, content, mno, type) VALUES(#{bno}, #{content}, #{mno}, #{type});
 	</insert>
 	
 	<update id="update" parameterType="CommentVO">
 		UPDATE comment 
 		SET content = #{content} 
-		WHERE cno = #{cno};
+		WHERE cno = #{cno} AND type = #{type};
 	</update>
 	
 	<delete id="delete">
@@ -20,17 +20,17 @@
 		WHERE cno = #{cno}
 	</delete>
 	
-	<select id="readAll" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+	<select id="readAll" resultType="java.util.HashMap">
 		SELECT c.cno, c.bno, c.regdate, m.name, c.content, m.mno
 		FROM comment c, member m 
-		WHERE bno = #{bno} and c.mno = m.mno;
+		WHERE bno = #{bno} AND c.mno = m.mno AND c.type=#{type};
 	</select>
 	
 	<select id="count" resultType="int">
-		SELECT count(*) FROM comment WHERE bno=#{bno};
+		SELECT count(*) FROM comment WHERE bno = #{bno} AND type = #{type};
 	</select>
 	
 	<select id="currentComment" resultType="CommentVO">
-		SELECT bno, content FROM comment ORDER BY regdate DESC LIMIT 1,7;
+		SELECT bno, content FROM comment WHERE type = #{type} ORDER BY regdate DESC LIMIT 1,7;
 	</select>
 </mapper>

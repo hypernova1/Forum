@@ -14,4 +14,8 @@
 			btn.disabled = true;
 		}
 	})
+	
+	document.querySelector('#cancel').addEventListener('click', function(){
+		history.back();
+	})
 })()

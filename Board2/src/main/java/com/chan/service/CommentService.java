@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.chan.domain.CommentVO;
 import com.chan.persistence.BoardDAO;
 import com.chan.persistence.CommentDAO;
+import com.chan.persistence.QnaDAO;
 
 @Service
 public class CommentService {
@@ -20,9 +21,12 @@ public class CommentService {
 	private CommentDAO dao;
 	@Autowired
 	private BoardDAO boardDao;
+	@Autowired
+	private QnaDAO qnaDao;
 
 	public void writeComment(CommentVO vo) {
-		boardDao.increasecom(vo.getBno());
+		if(vo.getType() == 1) boardDao.increasecom(vo.getBno());
+		else qnaDao.increasecom(vo.getBno());
 		dao.create(vo);
 	}
 
@@ -30,35 +34,40 @@ public class CommentService {
 		dao.update(vo);
 	}
 
-	public Map<String, Object> readComment(Integer bno) {
+	public Map<String, Object> readComment(Integer bno, Integer type) {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd hh.mm");
-		Map<String, Object> comment = new HashMap<>();
+		List<HashMap<String, Object>> oldList = dao.readAll(bno, type);
 		List<HashMap<String, Object>> list = new ArrayList<>();
+		Map<String, Object> comment = new HashMap<>();
 		
-		for(int i = 0; i < dao.readAll(bno).size(); i++) {
+		for(int i = 0; i < dao.readAll(bno, type).size(); i++) {
 			HashMap<String, Object> obj = new HashMap<>();
-			obj.put("bno", dao.readAll(bno).get(i).get("bno"));
-			obj.put("cno", dao.readAll(bno).get(i).get("cno"));
-			obj.put("regdate", sdf.format(dao.readAll(bno).get(i).get("regdate")));
-			obj.put("name", dao.readAll(bno).get(i).get("name"));
-			obj.put("content", dao.readAll(bno).get(i).get("content"));
-			obj.put("mno", dao.readAll(bno).get(i).get("mno"));
+			obj.put("bno", oldList.get(i).get("bno"));
+			obj.put("cno", oldList.get(i).get("cno"));
+			obj.put("regdate", sdf.format(oldList.get(i).get("regdate")));
+			obj.put("name", oldList.get(i).get("name"));
+			obj.put("content", oldList.get(i).get("content"));
+			obj.put("mno", oldList.get(i).get("mno"));
 			
 			list.add(obj);
 		}
-		comment.put("count", dao.count(bno));
+		comment.put("count", dao.count(bno, type));
 		comment.put("list", list);
 		
 		return comment;
 	}
 
-	public void deleteComment(Integer bno, Integer cno) {
-		boardDao.decreasecom(bno);
+	public void deleteComment(Integer bno, Integer cno, Integer type) {
+		if(type == 1) {
+			boardDao.decreasecom(bno);
+		} else {
+			qnaDao.decreasecom(bno);
+		}
 		dao.delete(bno, cno);
 	}
 
-	public int countComment(Integer bno) {
-		return dao.count(bno);
+	public int countComment(Integer bno, Integer type) {
+		return dao.count(bno, type);
 	}
 }

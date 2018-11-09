@@ -23,9 +23,9 @@ public class BoardService {
 	@Autowired
 	private CommentDAO commentDao;
 	
-	public void writePost(BoardVO vo) {
-		vo.setOriginno(1);
+	public int writePost(BoardVO vo) {
 		dao.create(vo);
+		return vo.getBno();
 	}
 	
 	public HashMap<String, Object> readPost(Integer bno) {
@@ -52,8 +52,8 @@ public class BoardService {
 		dao.viewUpdate(bno);
 	}
 	
-	public void updateRecommend(Integer bno, Integer mno, boolean recom) {
-		if(recommendDao.select(bno, mno) != 0) {
+	public void updateRecommend(Integer bno, Integer mno, boolean recom, Integer type) {
+		if(recommendDao.select(bno, mno, type) != 0) {
 			return;
 		}
 		
@@ -62,7 +62,7 @@ public class BoardService {
 		} else {
 			dao.decreaserecom(bno);
 		}
-		recommendDao.insert(bno, mno);
+		recommendDao.insert(bno, mno, type);
 
 	}
 	

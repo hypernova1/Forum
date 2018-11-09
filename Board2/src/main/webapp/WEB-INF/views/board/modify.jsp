@@ -22,7 +22,7 @@
             <div><textarea name="content" id="editor"></textarea></div>
             <div id="btn-wrapper">
                 <button type="submit" id="submit">확인</button>
-                <a id="cancel">취소</a>
+                <button type="button" id="cancel">취소</button>
             </div>
 	   	</section>
         <input type="hidden" name="page" id="page" value="${criteria.page}">
@@ -32,16 +32,14 @@
 <%@ include file="../include/footer.jsp" %>
 </body>
 <script>
-    ClassicEditor
-    .create( document.querySelector('#editor'), {
-        })
-    .then( editor => {
-        console.log(editor.setData('${board.content}'));
-    })
-    .catch( error => {
-        console.error(error);
-    });
-    
+	ClassicEditor
+	.create( document.querySelector('#editor'), {
+	    })
+	.then( editor => {
+	    editor.setData('${board.content}');
+	}).catch( error => {
+	    console.error(error);
+	});
 </script>
 <script src="/js/modify.js"></script>
 </html>

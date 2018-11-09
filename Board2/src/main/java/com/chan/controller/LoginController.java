@@ -59,9 +59,10 @@ public class LoginController {
 	
 	@PostMapping("/login/logout")
 	public @ResponseBody ResponseEntity<?> logout(HttpSession session){
-		
+		System.out.println(session.getAttribute("mno"));
 		session.removeAttribute("mno");
 		
 		return null;
 	}
+	
 }

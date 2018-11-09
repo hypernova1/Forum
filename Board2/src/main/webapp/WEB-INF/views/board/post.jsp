@@ -27,10 +27,12 @@
         <div id="content">
         	${board.content}
         </div>
-        <div id="recommend" class="center">
-            <div class="inline btn" id="true">추천</div>
-            <div class="inline btn" id="false">반대</div>
-        </div>
+        <c:if test="${sessionScope.mno != null}">
+	        <div id="recommend" class="center">
+	            <div class="inline btn" id="true">추천</div>
+	            <div class="inline btn" id="false">반대</div>
+	        </div>
+        </c:if>
         <div id="modify-box">
         <c:if test="${sessionScope.mno eq board.mno}">
 	        <form action="./modify" method="get" id="modifyForm">
@@ -46,12 +48,14 @@
             <div id="comment-view">comments &nbsp; <span></span></div>
             <ul id="comment-list">
             </ul>
-            <div id="comment-write">
-                <div id="comment-write-head" class="inline">댓글 작성</div>
-                <div id="-comment-write-box">
-                    <textarea id="content-textarea"></textarea>
-                <button class="write right" id="content-btn" disabled="disabled">등록</button></div>
-            </div>
+            <c:if test="${sessionScope.mno != null}">
+	            <div id="comment-write">
+	                <div id="comment-write-head" class="inline">댓글 작성</div>
+	                <div id="-comment-write-box">
+	                    <textarea id="content-textarea"></textarea>
+	                <button class="write right" id="content-btn" disabled="disabled">등록</button></div>
+	            </div>
+            </c:if>
         </div>
         <div class="btn list">목록 보기</div>
         

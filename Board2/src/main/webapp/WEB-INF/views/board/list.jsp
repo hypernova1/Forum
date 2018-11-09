@@ -56,16 +56,16 @@
 			</c:if>
 			<ul>
 				<c:if test="${page.prev}">
-					<li><a href="list?page=${page.startPage-1}&searchType=${criteria.searchType}&keyword=${criteria.keyword}"><button class="idx">&laquo;</button></a></li>
+					<li><a href="./list?page=${page.startPage-1}&searchType=${criteria.searchType}&keyword=${criteria.keyword}"><button class="idx">&laquo;</button></a></li>
 				</c:if>
 				<c:forEach begin="${page.startPage}" end="${page.endPage}" var="idx">
 					<li
 						<c:out value="${page.cri.page == idx ? 'class =active':''}"/>>
-						<a href="list?page=${idx}&searchType=${criteria.searchType}&keyword=${criteria.keyword}"><button class="idx">${idx}</button></a>		
+						<a href="./list?page=${idx}&searchType=${criteria.searchType}&keyword=${criteria.keyword}"><button class="idx">${idx}</button></a>		
 					</li>
 				</c:forEach>
 				<c:if test="${page.next && page.endPage > 0}">
-					<li><a href="list?page=${page.endPage + 1}&searchType=${criteria.searchType}&keyword=${criteria.keyword}"><button class="idx">&raquo;</button></a></li>
+					<li><a href="./list?page=${page.endPage + 1}&searchType=${criteria.searchType}&keyword=${criteria.keyword}"><button class="idx">&raquo;</button></a></li>
 				</c:if>
 			</ul>
 

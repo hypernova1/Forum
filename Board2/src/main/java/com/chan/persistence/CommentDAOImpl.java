@@ -28,8 +28,11 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public List<HashMap<String, Object>> readAll(Integer bno) {
-		return session.selectList("comment.readAll", bno);
+	public List<HashMap<String, Object>> readAll(Integer bno, Integer type) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("bno", bno);
+		param.put("type", type);
+		return session.selectList("comment.readAll", param);
 	}
 
 
@@ -42,8 +45,11 @@ public class CommentDAOImpl implements CommentDAO {
 	}
 
 	@Override
-	public int count(Integer bno) {
-		return session.selectOne("comment.count", bno);
+	public int count(Integer bno, Integer type) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("bno", bno);
+		param.put("type", type);
+		return session.selectOne("comment.count", param);
 	}
 
 	@Override
