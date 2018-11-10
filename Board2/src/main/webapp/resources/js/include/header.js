@@ -13,13 +13,9 @@ window.addEventListener('load', () => {
             document.querySelector('.qna').style.backgroundColor = "black";
             document.querySelector('.qna').style.color = "#e03131"
             break;
-        case "chatting":
-            document.querySelector('.chatting').style.backgroundColor = "black";
-            document.querySelector('.qna').style.color = "#e03131"
-            break;
-        case "notice":
-            document.querySelector('.notice').style.backgroundColor = "black";
-            document.querySelector('.notice').style.color = "#e03131"
+        case "contact":
+            document.querySelector('.contact').style.backgroundColor = "black";
+            document.querySelector('.contact').style.color = "#e03131"
             break;
     }
     // 각 메뉴 링크
@@ -32,17 +28,15 @@ window.addEventListener('load', () => {
     document.querySelector('.menu.qna').addEventListener('click', () => {
         location.href = "/qna/list";
     });
-    document.querySelector('.menu.chatting').addEventListener('click', () => {
-        location.href = "/chatting";
-    });
-    document.querySelector('.menu.notice').addEventListener('click', () => {
-        location.href = "/notice";
+    document.querySelector('.menu.contact').addEventListener('click', () => {
+        location.href = "/contact";
     });
 })
 
 
 let loginModal = document.querySelector('.modal.login');
 let signinModal = document.querySelector('.modal.signin');
+let passwordModal = document.querySelector('#find-password');
 
 let loginBtn = document.querySelector("#login");
 let signinBtn = document.querySelector("#signin");
@@ -68,6 +62,12 @@ document.querySelector('#signinBtn').addEventListener('click', () => {
 window.addEventListener('click', (e) => {
     if (e.target == signinModal) signinModal.style.display = "none";
     else if (e.target == loginModal) loginModal.style.display = "none";
+    else if(e.target == passwordModal) passwordModal.style.display = "none";
+})
+
+//로그인 모달에서 비밀번호 찾기 눌렀을 때
+document.querySelector('#pwBtn').addEventListener('click', () => {
+	document.querySelector('#find-password').style.display = "block";
 })
 
 // 아이디, 네임, 이메일, 비밀번호 정규식
@@ -227,6 +227,41 @@ function get(rest, url, obj) {
 				}
 		)
 	})
+	document.querySelector('#find-password-id').addEventListener('keyup', (e) => {
+		if(e.target.value == ""){
+			document.querySelector('#find-password .btn').disabled = true;
+			document.querySelector('#find-password .btn').style.backgroundColor = "";
+		} else{
+			document.querySelector('#find-password .btn').disabled = false;
+			document.querySelector('#find-password .btn').style.backgroundColor = "rgb(34, 139, 230)";
+		}
+	})
+	
+	//비밀번호 찾기 확인 버튼 눌렀을 때
+	document.querySelector('#find-password .btn').addEventListener('click', () => {
+		document.querySelector('#find-password .btn').disabled = true;
+		setTimeout(() => {
+			document.querySelector('#find-password .btn').disabled = false;
+		}, 5000);
+		get('POST','/login/password', { id: document.querySelector('#find-password-id').value })
+		.then( result => {
+			console.log(result);
+			if(result == "false"){
+				document.querySelector('#find-password .error').style.fontFamily = "";
+				document.querySelector('#find-password .error').innerHTML = "아이디를 찾을 수 없습니다."
+				
+			} else{
+				document.querySelector('#pw-content').innerText = result + "로 임시비밀번호가 전송되었습니다."
+				document.querySelector('#pw-complete').style.display = "block";
+			}
+		})
+	})
+	
+	//비밀번호 찾고 확인 버튼
+	document.querySelector('#pw-complete .btn').addEventListener('click', () => {
+		document.querySelector('#pw-complete').style.display = "none";
+		document.querySelector('#find-password').style.display = "none";
+	})
     
 
     // 회원가입 버튼을 눌렀을 때
@@ -243,7 +278,7 @@ function get(rest, url, obj) {
     // 로그인 후 로그아웃 버튼 눌렀을 때
     if (document.querySelector('#logout') != null) {
         document.querySelector('#logout').addEventListener('click', () => {
-            get('POST', '/login/logout', null).then(() => location.reload());
+            get('POST', '/login/logout', null).then((result) => location.reload());
         })
     }
 

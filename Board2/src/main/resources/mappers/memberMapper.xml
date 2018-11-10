@@ -28,5 +28,9 @@
 	<select id="getuserid" parameterType="java.lang.String" resultType="int">
 		SELECT mno FROM member WHERE id = #{id}
 	</select>
+	
+	<update id="tempPw">
+		UPDATE member SET pw = sha(#{pw}) WHERE id = #{id}
+	</update>
 
 </mapper>

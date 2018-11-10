@@ -15,7 +15,14 @@ public class QnaVO {
 	private Integer recommend;
 	private Integer view;
 	private Integer commend;
+	private Integer del;
 	
+	public Integer getDel() {
+		return del;
+	}
+	public void setDel(Integer del) {
+		this.del = del;
+	}
 	public Integer getQno() {
 		return qno;
 	}

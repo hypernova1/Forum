@@ -60,29 +60,53 @@ public class QnaController {
 	@GetMapping("post")
 	public String post(Model model, @ModelAttribute Criteria cri, Integer qno
 			, HttpServletRequest req, HttpServletResponse res, HttpSession session) {
-		System.out.println(qnaService.readPost(qno).toString());
-		//조회수 구현
-		Cookie cookies[] = req.getCookies();
-		Map<String, String> map = new HashMap<>();
 		
-		if(req.getCookies() != null) {
-			for(int i = 0; i<cookies.length; i++) {
-				Cookie obj = cookies[i];
-				map.put(obj.getName(), obj.getValue());
-			}
-		}
+				// 조회수 구현
+				Cookie cookies[] = req.getCookies();
+				Map<String, Object> map = new HashMap<>();
+				if (req.getCookies() != null) {
+					for (int i = 0; i < cookies.length; i++) {
+						map.put(cookies[i].getName(), cookies[i].getValue());
+					}
+				}
+
+			    // 저장된 쿠키중에 read_count 만 불러오기
+			    String readCount = (String) map.get("read_count");
+			     // 저장될 새로운 쿠키값 생성
+			    String newReadCount = "|" + qno;
+
+			    if (StringUtils.indexOfIgnoreCase(readCount, newReadCount) == -1) {
+			          // 없을 경우 쿠키 생성
+			          Cookie cookie = new Cookie("read_count", readCount + newReadCount);
+			         
+			          res.addCookie(cookie);
+			          qnaService.viewUpdate(qno, session); // 업데이트 실행
+			    }
+
+				model.addAttribute("qna", qnaService.readPost(qno));
+
+				return "/qna/post";
+	}
+	
+	@GetMapping("modify")
+	public String modifyGet(Integer qno, Model model, @ModelAttribute Criteria cri) {
+		model.addAttribute("qna", qnaService.readPost(qno));
+		return "/qna/modify";
+	}
+	
+	@PostMapping("modify")
+	public String modifyPost(Criteria cri, QnaVO vo) {
 		
-		String readCount = map.get("read_Count");
-		String newReadCount = "|" + qno;
+		qnaService.updatePost(vo);
 		
-		if(StringUtils.indexOfIgnoreCase(readCount, newReadCount) == -1) {
-			Cookie cookie = new Cookie("read_Count", readCount + newReadCount);
-			
-			res.addCookie(cookie);
-			qnaService.viewUpdate(qno);
-		}
-		model.addAttribute("qna",qnaService.readPost(qno));
-		return "qna/post"; 
+		return "redirect:/qna/post?qno=" + vo.getQno() + "&page=" + cri.getPage();
+	}
+	
+	@PostMapping("delete")
+	public String delete(QnaVO vo, Criteria cri) {
+		qnaService.deletePost(vo.getQno());
+		
+		return "redirect:/qna/list?page=" + cri.getPage();
 	}
 	
 }

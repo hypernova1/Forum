@@ -6,37 +6,20 @@
 <meta charset="UTF-8">
 <title>Developer Comunity</title>
 </head>
-<link href="https://fonts.googleapis.com/css?family=Poor+Story" rel="stylesheet">
-<style>
-	body{
-		background-image: url("http://www.sdjgjx.com/up/pc/background%20hd.jpg");	
-	}
-    #notice{
-        text-align: center;
-        font-size: 2em;
-        margin: 100px;
-        color: white;
-        font-family: 'Poor Story', cursive;
-        -ms-user-select: none;
-        -moz-user-select: -moz-none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        user-select:none;
-    }
-
-</style>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/home.css" />
 <body>
 <%@ include file="./include/header.jsp" %>
 
 <section>
-            <pre id="notice">
+<p id="notice">
                     
-                개발자들이 모여 지식 및 노하우를 공유하는 공간입니다.
+개발자들이 모여 지식 및 노하우를 공유하는 공간입니다. <br><br>
 
-                개발과 관련되지 않은 글이어도 좋습니다.
+개발과 관련되지 않은 글이어도 좋습니다. <br><br>
 
-                누구나 편하게 이용하고 재밌게 즐길 수 있는 것을 모토로 합니다.
-            </pre>
+누구나 편하게 이용하고 재밌게 즐길 수 있는 것을 모토로 합니다.
+</p>
 
 </section>
 

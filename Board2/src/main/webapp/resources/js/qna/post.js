@@ -5,13 +5,6 @@ document.querySelector('.btn.list').addEventListener('click', () => {
 
 (function () {
 	
-    //포스트 수정 페이지로 이동
-    if(document.querySelector('.inline.modify.btn')){
-		document.querySelector('.inline.modify.btn').addEventListener('click', () => {
-	    	location.href = "./modify?qna=" + document.querySelector('#qna').value + "&page=" + document.querySelector('#page').value;
-	    })
-    }
-    
     //포스트 삭제
     if(document.querySelector('.inline.delete.btn')){
 	    document.querySelector('.inline.delete.btn').addEventListener('click', function(){

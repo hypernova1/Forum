@@ -3,6 +3,8 @@ package com.chan.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,12 +52,23 @@ public class QnaService {
 		return qnaDao.countAll(cri);
 	}
 
-	public void viewUpdate(Integer qno) {
-		qnaDao.viewUpdate(qno);
+	public void viewUpdate(Integer qno, HttpSession session) {
+		if(!session.getAttribute("mno").equals(qnaDao.read(qno).get("mno"))) {
+			qnaDao.viewUpdate(qno);
+		}
 	}
 
 	public HashMap<String, Object> readPost(Integer qno) {
 		return qnaDao.read(qno);
+	}
+	
+	public void updatePost(QnaVO vo) {
+		qnaDao.update(vo);
+	}
+
+	public void deletePost(Integer qno) {
+		qnaDao.delete(qno);
+		
 	}
 	
 }

@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>Developers</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/css/qnapost.css" />
-<script src="/js/qnapost.js" defer="defer"></script>  
+<link rel="stylesheet" type="text/css" href="/css/qna/post.css" />
+<script src="/js/qna/post.js" defer="defer"></script>  
 <body>
 	<%@ include file="../include/header.jsp" %>
     <section id="post-section">
@@ -48,8 +48,8 @@
         
         <c:if test="${sessionScope.mno eq qna.mno}">
 	        <form action="./modify" method="get" id="modifyForm">
-	            <div class="inline modify btn">수정</div>
-	            <div class="inline delete btn">삭제</div>
+	            <button class="inline modify btn">수정</button>
+	            <button type="button" class="inline delete btn">삭제</button>
 	            <input type="hidden" name="qno" value="${qna.qno}">
 	        </form>
         </c:if>

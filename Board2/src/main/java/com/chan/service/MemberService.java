@@ -1,6 +1,7 @@
 package com.chan.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.chan.domain.MemberVO;
@@ -11,6 +12,8 @@ public class MemberService {
 
 	@Autowired
 	private MemberDAO dao;
+	@Autowired
+	private JavaMailSender jms;
 	
 	public int idcheck(String id) {
 		return dao.idcheck(id);
@@ -47,6 +50,26 @@ public class MemberService {
 	public void updateProfile(MemberVO vo) {
 		
 		dao.update(vo);
+	}
+
+	public String temporaryPassword(String id) {
+		
+		MailHandler mh = new MailHandler(jms);
+		String key = new TempKey().getKey(8, true);
+		MemberVO vo = dao.getuserById(id);
+		
+		vo.setPw(key);
+		
+		dao.tempPw(vo);
+		
+		
+		mh.setSubject("[Developers] 임시 비밀번호입니다.");
+		mh.setText(key);
+		mh.setFrom("chtlstjd01@gmail.com", "운영자");
+		mh.setTo(vo.getEmail());
+		mh.send();
+		
+		return vo.getEmail();
 	}
 	
 }

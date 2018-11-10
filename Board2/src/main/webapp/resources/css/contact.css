@@ -1,0 +1,20 @@
+body {
+	background-image: url("http://www.sdjgjx.com/up/pc/background%20hd.jpg");
+}
+
+section{
+    background-color: rgba(149, 165, 166, 0.3);
+	margin: 50px 500px auto;
+	width: auto;
+	height: 300px;
+	border-radius: 10px;
+	padding: 150px;
+	text-align: center;
+}
+
+#info{
+	padding: 30px;
+	font-size: 2em;
+	color: #b2bec3;
+}
+

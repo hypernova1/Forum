@@ -11,4 +11,5 @@ public interface MemberDAO {
 	public MemberVO getuserById(String id);
 	public MemberVO getuserByMno(Integer Mno);
 	public int getuserid(String id);
+	public void tempPw(MemberVO vo);
 }

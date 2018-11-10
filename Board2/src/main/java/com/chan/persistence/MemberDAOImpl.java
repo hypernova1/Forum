@@ -46,6 +46,11 @@ public class MemberDAOImpl implements MemberDAO {
 	public int getuserid(String id) {
 		return session.selectOne("member.getuserid", id);
 	}
+
+	@Override
+	public void tempPw(MemberVO vo) {
+		session.update("member.tempPw", vo);
+	}
 	
 	
 

@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>Developers</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/css/post.css" />
-<script src="/js/post.js" defer="defer"></script>  
+<link rel="stylesheet" type="text/css" href="/css/board/post.css" />
+<script src="/js/board/post.js" defer="defer"></script>  
 <body>
 	<%@ include file="../include/header.jsp" %>
     <section id="post-section">

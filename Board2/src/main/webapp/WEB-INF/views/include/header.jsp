@@ -10,7 +10,9 @@
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/css/header.css" />
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/include/header.css" />
+<script src="/js/include/header.js" defer="defer"></script>
 <body>
     <header class="header-wrap">f
         <div class="header-container">
@@ -33,8 +35,7 @@
     	<div class="menu none-drag home">Home</div>
     	<div class="menu none-drag freeBoard">Free Board</div>
     	<div class="menu none-drag qna">Q&A</div>
-    	<div class="menu none-drag chatting">Chatting</div>
-        <div class="menu none-drag notice">Notice</div>
+        <div class="menu none-drag contact">Contact</div>
     </nav>
 
    	<div class="header modal login">
@@ -99,9 +100,26 @@
        	</div>
     </div>
     
+    <div id="find-password">
+    	<div id="find-password-content">
+	    	<h2>비밀번호 찾기</h2>
+	    	<div class="error">&nbsp;</div>
+	    	<div><input type="text" placeholder="아이디를 입력해주세요." id="find-password-id"></div>
+	    	
+	    	<button class="btn" id="find-password-btn" disabled="disabled">확인</button>
+    	</div>
+    </div>
+    
+    <div id="pw-complete">
+    	<div id="pw-complete-content">
+    		<div id="pw-content"></div>
+    		<br>
+    		<button class="btn">확인</button>
+    	</div>
+    </div>
+    
     
     <input type="hidden" value="${sessionScope.mno}" id="session">
     
 </body>
-<script src="/js/header.js"></script>
 </html>

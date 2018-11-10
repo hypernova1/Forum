@@ -6,8 +6,8 @@
 <title>Developers</title>
 </head>
 <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/classic/ckeditor.js"></script>
-<link rel="stylesheet" type="text/css" href="/css/write.css" />
-<script src="/js/qnawrite.js" defer="defer"></script>
+<link rel="stylesheet" type="text/css" href="/css/board/write.css" />
+<script src="/js/qna/write.js" defer="defer"></script>
 <style>
 	.ck-editor__editable {
 	    min-height: 600px;

@@ -78,6 +78,7 @@ h2 {
 }
 
 .btn {
+	all:unset;
 	display: inline-block;
 	margin: 10px 5px;
 	padding: 8px 14px;

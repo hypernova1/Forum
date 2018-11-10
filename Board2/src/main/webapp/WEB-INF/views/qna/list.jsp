@@ -7,9 +7,9 @@
 <meta charset="UTF-8">
 <title>Developers</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/css/qnalist.css" />
+<link rel="stylesheet" type="text/css" href="/css/qna/list.css" />
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-<script src="/js/qnalist.js" defer="defer"></script>
+<script src="/js/qna/list.js" defer="defer"></script>
 <body>
 	<%@ include file="../include/header.jsp"%>
 	<section id="list-section">
@@ -43,7 +43,20 @@
 				<c:forEach items="${list}" var="qna">
 					<tr class="post">
 						<td class="num center"><c:if test="${qna.seq eq 0}"><p>${qna.qno}</p></c:if></td>
-						<td class="title"><p><a href="/qna/post?qno=${qna.qno}&page=${page.cri.page}">${qna.title}</a> <span class="list-comment">[${qna.comment}]</span></p></td>
+						<td class="title">
+						<c:choose>
+							<c:when test="${qna.del eq 1}">
+								<p class="delete-post">${qna.title}</p>
+							</c:when>
+							<c:otherwise>
+								<p>
+									<a href="/qna/post?qno=${qna.qno}&page=${page.cri.page}">${qna.title}</a>
+									<span class="list-comment">[${qna.comment}]</span>
+								</p>
+							</c:otherwise>
+						</c:choose>
+							
+						</td>
 						<td class="writer center"><p>${qna.name}</p></td>
 						<td class="view center"><p>${qna.view}</p></td>
 						<td class="date center"><p><fmt:formatDate pattern="yyyy.MM.dd HH:mm" value="${qna.regdate}"></fmt:formatDate></p></td>

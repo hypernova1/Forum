@@ -25,6 +25,11 @@ public class LoginController {
 		return "home";
 	}
 	
+	@GetMapping("/contact")
+	public String notice() {
+		return "contact";
+	}
+	
 	@PostMapping("login")
 	public @ResponseBody ResponseEntity<?> login(@RequestBody MemberVO vo, HttpSession session){
 
@@ -59,10 +64,18 @@ public class LoginController {
 	
 	@PostMapping("/login/logout")
 	public @ResponseBody ResponseEntity<?> logout(HttpSession session){
-		System.out.println(session.getAttribute("mno"));
 		session.removeAttribute("mno");
+		return new ResponseEntity<>(true, HttpStatus.OK);
 		
-		return null;
 	}
 	
+	@PostMapping("/login/password")
+	public @ResponseBody ResponseEntity<?> password(@RequestBody MemberVO vo){
+		
+		if(memberService.idcheck(vo.getId()) == 0) {
+			return new ResponseEntity<>("false", HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(memberService.temporaryPassword(vo.getId()), HttpStatus.OK);
+	}
 }

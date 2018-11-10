@@ -12,7 +12,11 @@
 		UPDATE qna SET groupno = #{qno} WHERE qno = #{qno};
 	</update>
 	<update id="update">
-		UPDATE qno SET title = {title}, content = #{content} WHERE qno = #{qno}
+		UPDATE qna SET title = #{title}, content = #{content} WHERE qno = #{qno}
+	</update>
+	
+	<update id="delete">
+		UPDATE qna SET title = '삭제된 글입니다.', content = '', del = 1 WHERE qno = #{qno}
 	</update>
 	
 	<select id="read" resultType="java.util.HashMap">
@@ -22,7 +26,7 @@
 	</select>
 	
 	<select id="readAll" resultType="java.util.HashMap">
-		SELECT q.qno, q.qno, q.title, q.regdate, q.recommend, q.view, q.comment, q.seq, m.name
+		SELECT q.qno, q.qno, q.title, q.regdate, q.recommend, q.view, q.comment, q.seq, q.del, m.name
 		FROM qna q, member m
 		WHERE q.mno = m.mno
 		<include refid="search"></include>

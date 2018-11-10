@@ -31,6 +31,6 @@
 	</select>
 	
 	<select id="currentComment" resultType="CommentVO">
-		SELECT bno, content FROM comment WHERE type = #{type} ORDER BY regdate DESC LIMIT 1,7;
+		SELECT bno, content FROM comment WHERE type = 1 ORDER BY regdate DESC LIMIT 0,7;
 	</select>
 </mapper>

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,8 +50,10 @@ public class BoardService {
 		return dao.countAll(cri);
 	}
 	
-	public void viewUpdate(Integer bno) {
-		dao.viewUpdate(bno);
+	public void viewUpdate(Integer bno, HttpSession session) {
+		if(!session.getAttribute("mno").equals(dao.read(bno).get("mno"))) {
+			dao.viewUpdate(bno);
+		}
 	}
 	
 	public void updateRecommend(Integer bno, Integer mno, boolean recom, Integer type) {

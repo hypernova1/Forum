@@ -1,0 +1,16 @@
+body {
+	background-image: url("http://www.sdjgjx.com/up/pc/background%20hd.jpg");
+}
+
+#notice {
+	text-align: center;
+	font-size: 3em;
+	margin: 100px;
+	color: white;
+	font-family: 'Nanum Pen Script', cursive;
+	-ms-user-select: none;
+	-moz-user-select: -moz-none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}

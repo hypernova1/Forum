@@ -7,9 +7,8 @@
 <meta charset="UTF-8">
 <title>Developers</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/css/list.css" />
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-<script src="/js/list.js" defer="defer"></script>
+<link rel="stylesheet" type="text/css" href="/css/board/list.css" />
+<script src="/js/board/list.js" defer="defer"></script>
 <body>
 	<%@ include file="../include/header.jsp"%>
 	<section id="list-section">
