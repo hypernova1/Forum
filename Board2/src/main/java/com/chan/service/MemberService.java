@@ -1,7 +1,6 @@
 package com.chan.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.chan.domain.MemberVO;
@@ -13,7 +12,7 @@ public class MemberService {
 	@Autowired
 	private MemberDAO dao;
 	@Autowired
-	private JavaMailSender jms;
+	private MailHandler mh;
 	
 	public int idcheck(String id) {
 		return dao.idcheck(id);
@@ -27,14 +26,11 @@ public class MemberService {
 		
 		if(dao.getuserById(vo.getId()) != null) {
 			if(dao.getpw(vo.getPw()).equals(dao.getuserById(vo.getId()).getPw())) {
-				System.out.println("로그인");
 				return 0; //로그인 완료
 			} else {
-				System.out.println("비번틀림");
 				return 2; //비번 틀림
 			}
 		} 
-		System.out.println("없는아이디");
 		return 1; //없는 아이디
 		
 	}
@@ -54,14 +50,12 @@ public class MemberService {
 
 	public String temporaryPassword(String id) {
 		
-		MailHandler mh = new MailHandler(jms);
 		String key = new TempKey().getKey(8, true);
 		MemberVO vo = dao.getuserById(id);
 		
 		vo.setPw(key);
 		
 		dao.tempPw(vo);
-		
 		
 		mh.setSubject("[Developers] 임시 비밀번호입니다.");
 		mh.setText(key);

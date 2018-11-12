@@ -22,7 +22,6 @@ public class CommentController {
 	private CommentService commentService;
 
 	//리스트, 갯수 리턴
-	//TODO: 계속 insert null값 나옴
 	@PostMapping("/write")
 	public ResponseEntity<Map<String, Object>> writeComment(@RequestBody CommentVO vo) {
 		commentService.writeComment(vo);

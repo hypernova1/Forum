@@ -105,7 +105,6 @@ public class BoardController {
 
 	@PostMapping("delete")
 	public String delete(BoardVO vo, Criteria cri) {
-		System.out.println(vo.getBno());
 		boardService.deletePost(vo.getBno());
 
 		return "redirect:./list?page=" + cri.getPage();
@@ -113,7 +112,6 @@ public class BoardController {
 
 	@GetMapping("recommend")
 	public String recommend(Integer bno, Integer mno, Criteria cri, boolean recom, Integer type) {
-		System.out.println(bno + " " + mno + " " + cri.getPage());
 		boardService.updateRecommend(bno, mno, recom, type);
 
 		return "redirect:./post?bno=" + bno + "&page=" + cri.getPage();

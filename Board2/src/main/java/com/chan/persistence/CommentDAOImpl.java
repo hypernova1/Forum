@@ -23,7 +23,6 @@ public class CommentDAOImpl implements CommentDAO {
 
 	@Override
 	public void update(CommentVO vo) {
-		System.out.println(vo.getCno());
 		session.update("comment.update", vo);
 	}
 

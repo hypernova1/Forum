@@ -51,7 +51,9 @@ public class BoardService {
 	}
 	
 	public void viewUpdate(Integer bno, HttpSession session) {
-		if(!session.getAttribute("mno").equals(dao.read(bno).get("mno"))) {
+		if(session.getAttribute("mno") == null) {
+			dao.viewUpdate(bno);
+		} else if(!session.getAttribute("mno").equals(dao.read(bno).get("mno"))) {
 			dao.viewUpdate(bno);
 		}
 	}

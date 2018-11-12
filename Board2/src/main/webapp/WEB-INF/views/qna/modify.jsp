@@ -28,6 +28,7 @@
 	   	</section>
         <input type="hidden" name="page" id="page" value="${criteria.page}">
         <input type="hidden" name="qno" id="qno" value="${qna.qno}">
+        <input type="hidden" name="mno" id="mno" value="${qna.mno}">
    	</form>
 
 <%@ include file="../include/footer.jsp" %>

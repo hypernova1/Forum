@@ -14,10 +14,10 @@
 <link rel="stylesheet" type="text/css" href="/css/include/header.css" />
 <script src="/js/include/header.js" defer="defer"></script>
 <body>
-    <header class="header-wrap">f
+    <header class="header-wrap">
         <div class="header-container">
             <div class="header-body none-drag">
-                <h1 class="logo">Developer Comunity</h1>
+                <h1 class="logo">Developers</h1>
                 <div class="privacy-box">
                 <c:choose>
 	                <c:when test="${sessionScope.mno eq null}">

@@ -12,12 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.chan.domain.QnaVO;
 import com.chan.pagination.Criteria;
 import com.chan.persistence.QnaDAO;
+import com.chan.persistence.RecommendDAO;
 
 @Service
 public class QnaService {
 	
 	@Autowired
 	private QnaDAO qnaDao;
+	@Autowired
+	private RecommendDAO recommendDao;
 	
 	@Transactional
 	public int writeQna(QnaVO vo) {
@@ -29,17 +32,16 @@ public class QnaService {
 		} else {
 			vo.setSeq(vo.getSeq() + 1);
 			vo.setDepth(vo.getDepth() + 1);
-			System.out.println(vo.getSeq());
-		}
 			
-		StringBuffer sb = new StringBuffer();
-		for(int i = 0; i < vo.getDepth(); i++) {
-			sb.append("RE: ");
-		}
-		sb.append(vo.getTitle());
-		vo.setTitle(sb.toString());
+			StringBuffer sb = new StringBuffer();
+			for(int i = 0; i < vo.getDepth(); i++) {
+				sb.append("RE: ");
+			}
+			sb.append(vo.getTitle());
+			vo.setTitle(sb.toString());
+			qnaDao.insert(vo);
 		
-		qnaDao.insert(vo);
+		}
 		
 		return vo.getQno();
 	}
@@ -53,7 +55,9 @@ public class QnaService {
 	}
 
 	public void viewUpdate(Integer qno, HttpSession session) {
-		if(!session.getAttribute("mno").equals(qnaDao.read(qno).get("mno"))) {
+		if(session.getAttribute("mno") == null) {
+			qnaDao.viewUpdate(qno);
+		} else if(!session.getAttribute("mno").equals(qnaDao.read(qno).get("qno"))) {
 			qnaDao.viewUpdate(qno);
 		}
 	}
@@ -68,6 +72,21 @@ public class QnaService {
 
 	public void deletePost(Integer qno) {
 		qnaDao.delete(qno);
+		
+	}
+
+	public void updateRecommend(Integer qno, Integer mno, boolean recom, Integer type) {
+		if(recommendDao.select(qno, mno, type) != 0) {
+			return;
+		}
+		
+		if (recom) {
+			qnaDao.increaserecom(qno);
+		} else {
+			qnaDao.decreaserecom(qno);
+		}
+		recommendDao.insert(qno, mno, type);
+
 		
 	}
 	

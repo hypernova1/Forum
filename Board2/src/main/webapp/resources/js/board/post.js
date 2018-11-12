@@ -22,21 +22,23 @@ document.querySelector('.btn.list').addEventListener('click', () => {
     }
     
     //추천
-    document.querySelector("#true").addEventListener('click', () => {
-    	location.href = "/board/recommend?bno=" 
-    		+ document.querySelector('#bno').value
-    		+ "&page=" + document.querySelector('#page').value
-    		+ "&recom=true&mno=" + document.querySelector('#session').value
-    		+ "&type=1";
-    })
-    //반대
-    document.querySelector("#false").addEventListener('click', () => {
-    	location.href = "/board/recommend?bno=" 
-    		+ document.querySelector('#bno').value
-    		+ "&page=" + document.querySelector('#page').value
-    		+ "&recom=false&mno=" + document.querySelector('#session').value
-    		+ "&type=1";
-    })
+    if(document.querySelector('#true') != null){
+    	document.querySelector("#true").addEventListener('click', () => {
+    		location.href = "/board/recommend?bno=" 
+    			+ document.querySelector('#bno').value
+    			+ "&page=" + document.querySelector('#page').value
+    			+ "&recom=true&mno=" + document.querySelector('#session').value
+    			+ "&type=1";
+    	})
+    	//반대
+    	document.querySelector("#false").addEventListener('click', () => {
+    		location.href = "/board/recommend?bno=" 
+    			+ document.querySelector('#bno').value
+    			+ "&page=" + document.querySelector('#page').value
+    			+ "&recom=false&mno=" + document.querySelector('#session').value
+    			+ "&type=1";
+    	})
+    }
 
     //댓글 페이지에 뿌려주기
     let getCommentList = (result) => {
@@ -87,33 +89,38 @@ document.querySelector('.btn.list').addEventListener('click', () => {
 
         get(rest, url, commentObj).then(
             result => {
+            	console.log(result)
                 getCommentList(result);
             }
         )
     })
 
-    document.querySelector('#content-textarea').addEventListener('keyup', () => {
-    	if(document.querySelector('#content-textarea').value == ""){
-    		document.querySelector('#content-btn').disabled = true;
-    	} else{
-    		document.querySelector('#content-btn').disabled = false;
-    	}
-    })
+    if(document.querySelector('#content-textarea') != null){
+    	document.querySelector('#content-textarea').addEventListener('keyup', () => {
+    		if(document.querySelector('#content-textarea').value == ""){
+    			document.querySelector('#content-btn').disabled = true;
+    		} else{
+    			document.querySelector('#content-btn').disabled = false;
+    		}
+    	})
+    }
     
     //댓글 작성
-    document.querySelector('#content-btn').addEventListener('click', function () {
-        url = '/comment/write';
-        rest = 'POST';
-        commentObj.mno = document.querySelector('#session').value;
-        commentObj.content = document.querySelector('#content-textarea').value;
-        commentObj.bno = document.querySelector('#bno').value;
-        
-        get('POST', '/comment/write', commentObj).then( result => {
-        	document.querySelector('#comment-list').innerHTML = "";
-        	getCommentList(result);
-        	document.querySelector('#content-textarea').value = "";
-        })
-    });
+    if(document.querySelector('#content-btn') != null){
+    	document.querySelector('#content-btn').addEventListener('click', function () {
+    		url = '/comment/write';
+    		rest = 'POST';
+    		commentObj.mno = document.querySelector('#session').value;
+    		commentObj.content = document.querySelector('#content-textarea').value;
+    		commentObj.bno = document.querySelector('#bno').value;
+    		
+    		get('POST', '/comment/write', commentObj).then( result => {
+    			document.querySelector('#comment-list').innerHTML = "";
+    			getCommentList(result);
+    			document.querySelector('#content-textarea').value = "";
+    		})
+    	});
+    }
 
     
     //댓글 삭제,수정

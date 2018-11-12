@@ -97,6 +97,8 @@ public class QnaController {
 	@PostMapping("modify")
 	public String modifyPost(Criteria cri, QnaVO vo) {
 		
+		System.out.println(vo);
+		
 		qnaService.updatePost(vo);
 		
 		return "redirect:/qna/post?qno=" + vo.getQno() + "&page=" + cri.getPage();
@@ -107,6 +109,13 @@ public class QnaController {
 		qnaService.deletePost(vo.getQno());
 		
 		return "redirect:/qna/list?page=" + cri.getPage();
+	}
+	
+	@GetMapping("recommend")
+	public String recommend(Integer qno, Integer mno, Criteria cri, boolean recom, Integer type) {
+		qnaService.updateRecommend(qno, mno, recom, type);
+
+		return "redirect:./post?qno=" +qno + "&page=" + cri.getPage();
 	}
 	
 }

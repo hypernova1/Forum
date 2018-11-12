@@ -6,20 +6,25 @@ import javax.activation.DataSource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MailHandler {
 
+	@Autowired
 	private JavaMailSender mailSender; //이메일 전송 객체
-    private MimeMessage message; //인코딩 방식 객체?
+    private MimeMessage message; //인코딩 방식 객체
     private MimeMessageHelper messageHelper; // 이메일 전송 전 세팅을 위한 객체
 
     public MailHandler(JavaMailSender mailSender) {
         this.mailSender = mailSender;
         message = this.mailSender.createMimeMessage();
         try {
-			messageHelper = new MimeMessageHelper(message, true, "UTF-8"); //2번째 파라미터: 멀티파트 메시지 여부, 3번째: 인코딩 형식
+        	//2번째 파라미터: 멀티파트 메시지 여부, 3번째: 인코딩 형식
+			messageHelper = new MimeMessageHelper(message, true, "UTF-8"); 
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}

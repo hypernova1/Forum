@@ -15,7 +15,6 @@ public class RecommendImpl implements RecommendDAO {
 	@Override
 	public void insert(Integer bno, Integer mno, Integer type) {
 		Map<String, Object> param = new HashMap<>();
-		System.out.println(bno + " " + mno);
 		param.put("bno", bno);
 		param.put("mno", mno);
 		param.put("type", type);
