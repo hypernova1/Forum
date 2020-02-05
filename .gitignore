@@ -136,3 +136,4 @@ eclipse-simrel/
 .springBeans
 .project
 .classpath
+.DS_Store
